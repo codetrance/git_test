@@ -34,3 +34,9 @@ div:nth-child(4) {
   background-color: yellow;
   color: black;
 }
+
+.katho-mut,
+.andrea-pia {
+  width: 200px;
+  height: 400px;
+}
