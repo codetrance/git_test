@@ -1,4 +1,4 @@
-p {
+/* p {
   background-color: rgb(255, 167, 167);
   font-family: Verdana, Tahoma, sans-serif;
 }
@@ -11,15 +11,15 @@ p {
 .number:nth-child(3) {
   font-size: 24px;
 }
-
-div:nth-child(4) {
+ */
+/* div:nth-child(4) {
   font-family: Verdana, Tahoma, sans-serif;
   font-size: 24px;
   font-weight: bold;
   background-color: lawngreen;
-}
+} */
 
-.click,
+/* .click,
 .noclick {
   font-size: 28px;
   font-family: Helvetica, "Times New Roman", Times, serif;
@@ -39,4 +39,57 @@ div:nth-child(4) {
 .andrea-pia {
   width: 200px;
   height: 400px;
+} */
+
+/* div {
+  color: red;
+  background-color: yellow;
+  font-size: 24px;
+  text-align: center;
+} */
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.para,
+.small-para {
+  color: hsl(0, 0%, 0%);
+  font-weight: 800;
+  font-size: 33px;
+  font-weight: 800;
+}
+
+.small-para {
+  font-size: 22px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+/* .para {
+  font-size: 22px;
+} */
+
+.button.confirm {
+  background: green;
+  color: white;
+  font-weight: bold;
+}
+
+.button {
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+}
+
+.child {
+  color: rgb(0, 0, 0);
+  font-weight: 800;
+  font-size: 14px;
+}
+
+div.text {
+  color: rgb(0, 0, 0);
+  font-size: 22px;
+  font-weight: 100;
 }
