@@ -1,4 +1,8 @@
-/* p {
+* {
+  outline: 2px solid red;
+}
+
+p {
   background-color: rgb(255, 167, 167);
   font-family: Verdana, Tahoma, sans-serif;
 }
@@ -6,12 +10,15 @@
 #num2 {
   color: blue;
   font-size: 36px;
+  padding: 20px;
+  border: 10px solid purple;
+  margin: 40px;
 }
 
 .number:nth-child(3) {
   font-size: 24px;
 }
- */
+*/
 /* div:nth-child(4) {
   font-family: Verdana, Tahoma, sans-serif;
   font-size: 24px;
@@ -46,7 +53,7 @@
   background-color: yellow;
   font-size: 24px;
   text-align: center;
-} */
+}
 
 body {
   font-family: Arial, Helvetica, sans-serif;
