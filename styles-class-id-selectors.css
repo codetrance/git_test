@@ -1,7 +1,7 @@
 * {
   outline: 2px solid red;
 }
-
+/* 
 p {
   background-color: rgb(255, 167, 167);
   font-family: Verdana, Tahoma, sans-serif;
@@ -17,8 +17,8 @@ p {
 
 .number:nth-child(3) {
   font-size: 24px;
-}
-*/
+} */
+
 /* div:nth-child(4) {
   font-family: Verdana, Tahoma, sans-serif;
   font-size: 24px;
@@ -77,7 +77,7 @@ body {
   font-size: 22px;
 } */
 
-.button.confirm {
+/* .button.confirm {
   background: green;
   color: white;
   font-weight: bold;
@@ -99,4 +99,53 @@ div.text {
   color: rgb(0, 0, 0);
   font-size: 22px;
   font-weight: 100;
+} */
+/* body {
+  max-width: 600px;
+  margin: 0 auto;
+} */
+
+/* .one {
+  background: pink;
+  border: 3px solid blue;
+  /* CHANGE ME */
+/* padding: 32px;
+  margin: 12px;
+} */
+*/ body {
+  background: #eee;
+  font-family: sans-serif;
+  margin: 8px;
+}
+
+.card {
+  width: 400px;
+  background: #fff;
+  margin: 8px;
+  margin-right: 0px;
+}
+
+.title {
+  background: #e3f4ff;
+  margin-bottom: 8px;
+  font-size: 16px;
+  padding: 8px;
+}
+
+.content {
+  background: #e3f4ff;
+  padding: 16px 8px;
+}
+
+.button-container {
+  background: #e3f4ff;
+  padding: 8px;
+  align-items: center;
+  display: block;
+}
+
+button {
+  background: white;
+  border: 1px solid #eee;
+  padding: 8px 24px;
 }
