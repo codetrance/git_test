@@ -1,118 +1,83 @@
-<!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-
-    <title>Number guessing game</title>
-
-    <style>
-      html {
-        font-family: sans-serif;
-      }
-      body {
-        width: 50%;
-        max-width: 800px;
-        min-width: 480px;
-        margin: 0 auto;
-      }
-      .lastResult {
-        color: white;
-        padding: 3px;
-      }
-    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
   </head>
-
   <body>
-    <h1>Number guessing game</h1>
-
-    <p>
-      We have selected a random number between 1 and 100. See if you can guess
-      it in 10 turns or less. We'll tell you if your guess was too high or too
-      low.
-    </p>
-
-    <div class="form">
-      <label for="guessField">Enter a guess: </label>
-      <input type="text" id="guessField" class="guessField" />
-      <input type="submit" value="Submit guess" class="guessSubmit" />
-    </div>
-
-    <div class="resultParas">
-      <p class="guesses"></p>
-      <p class="lastResult"></p>
-      <p class="lowOrHi"></p>
-    </div>
-
     <script>
-      let randomNumber = Math.floor(Math.random()) + 1;
+      console.log("Hello from JS!");
+      let humanChoice = "y";
+      function getHumanChoice() {
+        humanChoice = window
+          .prompt("Choose an option - Rock, Paper, Scissors")
+          .toLowerCase();
+        console.log("Human Chose :", humanChoice);
+      }
 
-      const guesses = document.querySelector(".guesses");
-      const lastResult = document.querySelector(".lastResult");
-      const lowOrHi = document.querySelector(".lowOrHi");
-      const guessSubmit = document.querySelector(".guessSubmit");
-      const guessField = document.querySelector(".guessField");
-      console.log("value is", lowOrHi);
-      let guessCount = 1;
-      let resetButton;
-
-      function checkGuess() {
-        const userGuess = Number(guessField.value);
-        if (guessCount === 1) {
-          guesses.textContent = "Previous guesses: ";
-        }
-        guesses.textContent += userGuess + " ";
-
-        if (userGuess === randomNumber) {
-          lastResult.textContent = "Congratulations! You got it right!";
-          lastResult.style.backgroundColor = "green";
-          lowOrHi.textContent = "";
-          setGameOver();
-        } else if (guessCount === 10) {
-          lastResult.textContent = "!!!GAME OVER!!!";
-          setGameOver();
+      let computerChoice = "x";
+      function getComputerChoice() {
+        let result = Math.random();
+        if (result >= 0 && result <= 0.3) {
+          computerChoice = "Rock".toLowerCase();
+          console.log("Computer Chose :", computerChoice);
+          return;
+        } else if (result > 0.3 && result <= 0.7) {
+          computerChoice = "Paper".toLowerCase();
+          console.log("Computer Chose :", computerChoice);
+          return;
         } else {
-          lastResult.textContent = "Wrong!";
-          lastResult.style.backgroundColor = "red";
-          if (userGuess < randomNumber) {
-            lowOrHi.textContent = "Last guess was too low!";
-          } else if (userGuess > randomNumber) {
-            lowOrHi.textContent = "Last guess was too high!";
-          }
+          computerChoice = "Scissors".toLowerCase();
+          console.log("Computer Chose :", computerChoice);
+          return;
         }
-
-        guessCount++;
-        guessField.value = "";
-        guessField.focus();
-      }
-      guessSubmit.addEventListener("click", checkGuess);
-
-      function setGameOver() {
-        guessField.disabled = true;
-        guessSubmit.disabled = true;
-        resetButton = document.createElement("button");
-        resetButton.textContent = "Start new game";
-        document.body.appendChild(resetButton);
-        resetButton.addEventListener("click", resetGame);
       }
 
-      function resetGame() {
-        guessCount = 1;
+      let humanScore = 0;
+      let computerScore = 0;
 
-        const resetParas = document.querySelectorAll(".resultParas p");
-        for (const resetPara of resetParas) {
-          resetPara.textContent = "";
+      // Take the choice from human (make it case sensitive)
+      // Take the choice from computer (make it case sensitive)
+      // Play first round by comparing choice of human and computer, playRound function
+      function playRound(humanChoice, computerChoice) {
+        if (humanChoice == computerChoice) {
+          console.log("It's a tie, let's play again!");
+          // console.log("What value of humanChoice", humanChoice);
+          // console.log("What value of computerChoice", computerChoice);
+          return;
+        } else if (
+          (humanChoice == "rock" && computerChoice == "scissors") ||
+          (humanChoice == "scissors" && computerChoice == "paper") ||
+          (humanChoice == "paper" && computerChoice == "rock")
+        ) {
+          humanScore += 1;
+          console.log("You win :", humanScore);
+          return;
+        } else {
+          console.log("You lose!");
+          return;
         }
-        resetButton.parentNode.removeChild(resetButton);
-
-        guessField.disabled = false;
-        guessSubmit.disabled = false;
-        guessField.value = "";
-        guessField.focus();
-
-        lastResult.style.backgroundColor = "white";
-
-        randomNumber = Math.floor(Math.random()) + 1;
+        console.log("humanScore :", humanScore);
+        console.log("computerScore :", computerScore);
       }
+      // Based on who won, update the score for human OR computer
+      // Play this round 5 times, by adding this into a function to call 5 times
+      function playGame(rounds) {
+        for (let round = 1; round <= rounds; round++) {
+          getHumanChoice();
+          getComputerChoice();
+          playRound(humanChoice, computerChoice);
+          console.log("Round :", round);
+          console.log("Your score so far is:", humanScore);
+          // return;
+        }
+        console.log("You scored overall:", humanScore);
+      }
+
+      // playRound(humanChoice, computerChoice);
+      playGame(5);
+      console.log("Human Chose :", humanChoice);
+      console.log("Computer Chose :", computerChoice);
     </script>
   </body>
 </html>
