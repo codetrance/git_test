@@ -1,83 +1,52 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en-US">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <meta charset="utf-8" />
+    <title>Loops: Task 2</title>
+    <style>
+      p {
+        color: purple;
+        margin: 0.5em 0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+    </style>
+    <link rel="stylesheet" href="styles.css" />
   </head>
+
   <body>
-    <script>
-      console.log("Hello from JS!");
-      let humanChoice = "y";
-      function getHumanChoice() {
-        humanChoice = window
-          .prompt("Choose an option - Rock, Paper, Scissors")
-          .toLowerCase();
-        console.log("Human Chose :", humanChoice);
-      }
-
-      let computerChoice = "x";
-      function getComputerChoice() {
-        let result = Math.random();
-        if (result >= 0 && result <= 0.3) {
-          computerChoice = "Rock".toLowerCase();
-          console.log("Computer Chose :", computerChoice);
-          return;
-        } else if (result > 0.3 && result <= 0.7) {
-          computerChoice = "Paper".toLowerCase();
-          console.log("Computer Chose :", computerChoice);
-          return;
-        } else {
-          computerChoice = "Scissors".toLowerCase();
-          console.log("Computer Chose :", computerChoice);
-          return;
-        }
-      }
-
-      let humanScore = 0;
-      let computerScore = 0;
-
-      // Take the choice from human (make it case sensitive)
-      // Take the choice from computer (make it case sensitive)
-      // Play first round by comparing choice of human and computer, playRound function
-      function playRound(humanChoice, computerChoice) {
-        if (humanChoice == computerChoice) {
-          console.log("It's a tie, let's play again!");
-          // console.log("What value of humanChoice", humanChoice);
-          // console.log("What value of computerChoice", computerChoice);
-          return;
-        } else if (
-          (humanChoice == "rock" && computerChoice == "scissors") ||
-          (humanChoice == "scissors" && computerChoice == "paper") ||
-          (humanChoice == "paper" && computerChoice == "rock")
-        ) {
-          humanScore += 1;
-          console.log("You win :", humanScore);
-          return;
-        } else {
-          console.log("You lose!");
-          return;
-        }
-        console.log("humanScore :", humanScore);
-        console.log("computerScore :", computerScore);
-      }
-      // Based on who won, update the score for human OR computer
-      // Play this round 5 times, by adding this into a function to call 5 times
-      function playGame(rounds) {
-        for (let round = 1; round <= rounds; round++) {
-          getHumanChoice();
-          getComputerChoice();
-          playRound(humanChoice, computerChoice);
-          console.log("Round :", round);
-          console.log("Your score so far is:", humanScore);
-          // return;
-        }
-        console.log("You scored overall:", humanScore);
-      }
-
-      // playRound(humanChoice, computerChoice);
-      playGame(5);
-      console.log("Human Chose :", humanChoice);
-      console.log("Computer Chose :", computerChoice);
-    </script>
+    <section class="preview"></section>
   </body>
+  <script>
+    const name = "bert";
+    const para = document.createElement("p");
+
+    const phonebook = [
+      { name: "Chris", number: "1549" },
+      { name: "Li Kang", number: "9634" },
+      { name: "Anne", number: "9065" },
+      { name: "Francesca", number: "3001" },
+      { name: "Mustafa", number: "6888" },
+      { name: "Tina", number: "4312" },
+      { name: "Bert", number: "7780" },
+      { name: "Jada", number: "2282" },
+    ];
+
+    // Add your code here
+    // Search for the name in the objects
+    for (i = 0; i < phonebook.length; i++) {
+      if (phonebook[i].name.toLowerCase() === name.toLowerCase()) {
+        para.textContent = `The phone number of
+          ${phonebook[i].name}
+           is
+          ${phonebook[i].number}`;
+      }
+    }
+
+    // Don't edit the code below here!
+    const section = document.querySelector("section");
+    section.appendChild(para);
+  </script>
 </html>
