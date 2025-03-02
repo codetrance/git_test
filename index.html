@@ -16,37 +16,22 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
 
+  <!-- The DOM -->
   <body>
-    <section class="preview"></section>
+    <h1>THE TITLE OF YOUR WEBPAGE</h1>
+    <div id="container">
+      <div class="content">This is the glorious text-content!</div>
+    </div>
+    <div id="newContainer">
+      <button onclick="alert('Hello World')">Click Me</button>
+      <button id="btn">Click Me</button>
+      <button onclick="alertFunction()">Type 1 Method</button>
+      <button id="btn1">Type 4 Methods</button>
+    </div>
+    <!-- <div id="button-container">
+      <button id="addButton">Add New Button</button>
+    </div> -->
   </body>
-  <script>
-    const name = "bert";
-    const para = document.createElement("p");
 
-    const phonebook = [
-      { name: "Chris", number: "1549" },
-      { name: "Li Kang", number: "9634" },
-      { name: "Anne", number: "9065" },
-      { name: "Francesca", number: "3001" },
-      { name: "Mustafa", number: "6888" },
-      { name: "Tina", number: "4312" },
-      { name: "Bert", number: "7780" },
-      { name: "Jada", number: "2282" },
-    ];
-
-    // Add your code here
-    // Search for the name in the objects
-    for (i = 0; i < phonebook.length; i++) {
-      if (phonebook[i].name.toLowerCase() === name.toLowerCase()) {
-        para.textContent = `The phone number of
-          ${phonebook[i].name}
-           is
-          ${phonebook[i].number}`;
-      }
-    }
-
-    // Don't edit the code below here!
-    const section = document.querySelector("section");
-    section.appendChild(para);
-  </script>
+  <script src="js-file.js"></script>
 </html>
