@@ -11,13 +11,16 @@
       <button class="scissors" id="scissors">SCISSORS</button>
     </div>
 
+    <div id="resultDiv">Results will appear here.</div>
+
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll("button").forEach((button) => {
           button.addEventListener("click", function (event) {
             let humanChoice = handleClick(event);
             let computerChoice = getComputerChoice();
-            playRound(humanChoice, computerChoice);
+            let result = playRound(humanChoice, computerChoice);
+            document.getElementById("resultDiv").innerText = result;
           });
         });
       });
@@ -50,22 +53,22 @@
           return computerChoice;
         }
       }
+
       function playRound(humanChoice, computerChoice) {
         if (humanChoice === computerChoice) {
-          console.log("It's a tie, let's play again!");
-          return;
+          return `It's a tie, let's play again! Humanscore :${humanScore}, Computerscore :${computerScore}`;
         } else if (
           (humanChoice === "ROCK" && computerChoice === "SCISSORS") ||
           (humanChoice === "SCISSORS" && computerChoice === "PAPER") ||
           (humanChoice === "PAPER" && computerChoice === "ROCK")
         ) {
           humanScore += 1;
-          console.log("You win, your Score :", humanScore);
-          return;
+          console.log("You win, your Score :", `${humanScore}`);
+          return `You win, your Score : ${humanScore}`;
         } else {
           computerScore += 1;
-          console.log("You lose! Computer Score :", computerScore);
-          return;
+          console.log("You lose! Computer Score :", `${computerScore}`);
+          return `You lose! Computer Score : ${computerScore}`;
         }
         // Check why code is not reaching the below code??
         console.log(
@@ -80,6 +83,10 @@
 
       let humanScore = 0;
       let computerScore = 0;
+
+      // function updateContent() {
+      //   document.getElementById("displayDiv").innerText =
+      // }
 
       // Take the choice from human (make it case sensitive)
       // Take the choice from computer (make it case sensitive)
@@ -111,6 +118,25 @@
         align-items: center;
         height: 100vh;
         background-color: #f4f4f4;
+      }
+      #displayDiv {
+        width: 300px;
+        padding: 20px;
+        border: 2px solid black;
+        background-color: lightgray;
+        text-align: center;
+        margin: 20px auto;
+        font-size: 18px;
+      }
+      #resultDiv {
+        width: 100%;
+        display: block;
+        margin-top: 20px;
+        padding: 10px;
+        border: 2px solid black;
+        background-color: lightgray;
+        text-align: center;
+        font-size: 18px;
       }
       .button-container {
         display: flex;
