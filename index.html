@@ -13,18 +13,6 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        // document.getElementById("rock").addEventListener("click", function () {
-        //   handleClick("ROCK");
-        // });
-        // document.getElementById("paper").addEventListener("click", function () {
-        //   handleClick("PAPER");
-        // });
-        // document
-        //   .getElementById("scissors")
-        //   .addEventListener("click", function () {
-        //     handleClick("SCISSORS");
-        //   });
-        // document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll("button").forEach((button) => {
           button.addEventListener("click", function (event) {
             let humanChoice = handleClick(event);
@@ -33,7 +21,7 @@
           });
         });
       });
-      // let humanChoice = "";
+
       function handleClick(event) {
         humanChoice = event.target.id.toUpperCase();
         console.log("YOU chose :", humanChoice);
@@ -65,26 +53,30 @@
       function playRound(humanChoice, computerChoice) {
         if (humanChoice === computerChoice) {
           console.log("It's a tie, let's play again!");
-          // console.log("What value of humanChoice", humanChoice);
-          // console.log("What value of computerChoice", computerChoice);
           return;
         } else if (
-          (humanChoice === "rock" && computerChoice === "scissors") ||
-          (humanChoice === "scissors" && computerChoice === "paper") ||
-          (humanChoice === "paper" && computerChoice === "rock")
+          (humanChoice === "ROCK" && computerChoice === "SCISSORS") ||
+          (humanChoice === "SCISSORS" && computerChoice === "PAPER") ||
+          (humanChoice === "PAPER" && computerChoice === "ROCK")
         ) {
           humanScore += 1;
-          console.log("You win :", humanScore);
+          console.log("You win, your Score :", humanScore);
           return;
         } else {
-          console.log("You lose!");
+          computerScore += 1;
+          console.log("You lose! Computer Score :", computerScore);
           return;
         }
-        console.log("humanScore :", humanScore);
-        console.log("computerScore :", computerScore);
+        // Check why code is not reaching the below code??
+        console.log(
+          "Current Scores - You:",
+          humanScore,
+          "Computer:",
+          computerScore
+        );
       }
 
-      let computerChoice = "x";
+      // let computerChoice = "x";
 
       let humanScore = 0;
       let computerScore = 0;
@@ -118,11 +110,13 @@
         justify-content: center;
         align-items: center;
         height: 100vh;
-        /* width: 20px; */
         background-color: #f4f4f4;
       }
       .button-container {
         display: flex;
+        align-items: center;
+        /* padding: 20px; */
+        /* border: red; */
         gap: 10px;
       }
       button {
