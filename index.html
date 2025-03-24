@@ -26,13 +26,17 @@
         //   });
         // document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll("button").forEach((button) => {
-          button.addEventListener("click", handleClick);
+          button.addEventListener("click", function (event) {
+            let humanChoice = handleClick(event);
+            let computerChoice = getComputerChoice();
+            playRound(humanChoice, computerChoice);
+          });
         });
       });
-      let humanChoice = "";
+      // let humanChoice = "";
       function handleClick(event) {
         humanChoice = event.target.id.toUpperCase();
-        console.log(humanChoice + " clicked!");
+        console.log("YOU chose :", humanChoice);
         document.body.style.backgroundColor =
           humanChoice === "ROCK"
             ? "#ffcccb"
@@ -42,47 +46,32 @@
         return humanChoice;
       }
 
-      // let humanChoice = "y";
-      // function getHumanChoice() {
-      //   humanChoice = window
-      //     .prompt("Choose an option - Rock, Paper, Scissors")
-      //     .toLowerCase();
-      //   console.log("Human Chose :", humanChoice);
-      // }
-      let computerChoice = "x";
       function getComputerChoice() {
         let result = Math.random();
         if (result >= 0 && result <= 0.3) {
-          computerChoice = "Rock".toLowerCase();
+          computerChoice = "Rock".toUpperCase();
           console.log("Computer Chose :", computerChoice);
-          return;
+          return computerChoice;
         } else if (result > 0.3 && result <= 0.7) {
-          computerChoice = "Paper".toLowerCase();
+          computerChoice = "Paper".toUpperCase();
           console.log("Computer Chose :", computerChoice);
-          return;
+          return computerChoice;
         } else {
-          computerChoice = "Scissors".toLowerCase();
+          computerChoice = "Scissors".toUpperCase();
           console.log("Computer Chose :", computerChoice);
-          return;
+          return computerChoice;
         }
       }
-
-      let humanScore = 0;
-      let computerScore = 0;
-
-      // Take the choice from human (make it case sensitive)
-      // Take the choice from computer (make it case sensitive)
-      // Play first round by comparing choice of human and computer, playRound function
       function playRound(humanChoice, computerChoice) {
-        if (humanChoice == computerChoice) {
+        if (humanChoice === computerChoice) {
           console.log("It's a tie, let's play again!");
           // console.log("What value of humanChoice", humanChoice);
           // console.log("What value of computerChoice", computerChoice);
           return;
         } else if (
-          (humanChoice == "rock" && computerChoice == "scissors") ||
-          (humanChoice == "scissors" && computerChoice == "paper") ||
-          (humanChoice == "paper" && computerChoice == "rock")
+          (humanChoice === "rock" && computerChoice === "scissors") ||
+          (humanChoice === "scissors" && computerChoice === "paper") ||
+          (humanChoice === "paper" && computerChoice === "rock")
         ) {
           humanScore += 1;
           console.log("You win :", humanScore);
@@ -94,24 +83,34 @@
         console.log("humanScore :", humanScore);
         console.log("computerScore :", computerScore);
       }
+
+      let computerChoice = "x";
+
+      let humanScore = 0;
+      let computerScore = 0;
+
+      // Take the choice from human (make it case sensitive)
+      // Take the choice from computer (make it case sensitive)
+      // Play first round by comparing choice of human and computer, playRound function
+
       // Based on who won, update the score for human OR computer
       // Play this round 5 times, by adding this into a function to call 5 times
-      function playGame(rounds) {
-        for (let round = 1; round <= rounds; round++) {
-          getHumanChoice();
-          getComputerChoice();
-          playRound(humanChoice, computerChoice);
-          console.log("Round :", round);
-          console.log("Your score so far is:", humanScore);
-          // return;
-        }
-        console.log("You scored overall:", humanScore);
-      }
+      // function playGame(rounds) {
+      //   for (let round = 1; round <= rounds; round++) {
+      //     let humanChoice = await getHumanChoice();
+      //     getComputerChoice();
+      //     playRound(humanChoice, computerChoice);
+      //     console.log("Round :", round);
+      //     console.log("Your score so far is:", humanScore);
+      //     // return;
+      //   }
+      //   console.log("You scored overall:", humanScore);
+      // }
 
       // playRound(humanChoice, computerChoice);
-      playGame(5);
-      console.log("Human Chose :", humanChoice);
-      console.log("Computer Chose :", computerChoice);
+      // playGame(5);
+      // console.log("Human Chose :", humanChoice);
+      // console.log("Computer Chose :", computerChoice);
     </script>
     <style>
       body {
