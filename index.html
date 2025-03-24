@@ -5,16 +5,50 @@
     <title>Document</title>
   </head>
   <body>
+    <div class="button-container">
+      <button class="rock" id="rock">ROCK</button>
+      <button class="paper" id="paper">PAPER</button>
+      <button class="scissors" id="scissors">SCISSORS</button>
+    </div>
+
     <script>
-      console.log("Hello from JS!");
-      let humanChoice = "y";
-      function getHumanChoice() {
-        humanChoice = window
-          .prompt("Choose an option - Rock, Paper, Scissors")
-          .toLowerCase();
-        console.log("Human Chose :", humanChoice);
+      document.addEventListener("DOMContentLoaded", function () {
+        // document.getElementById("rock").addEventListener("click", function () {
+        //   handleClick("ROCK");
+        // });
+        // document.getElementById("paper").addEventListener("click", function () {
+        //   handleClick("PAPER");
+        // });
+        // document
+        //   .getElementById("scissors")
+        //   .addEventListener("click", function () {
+        //     handleClick("SCISSORS");
+        //   });
+        // document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll("button").forEach((button) => {
+          button.addEventListener("click", handleClick);
+        });
+      });
+      let humanChoice = "";
+      function handleClick(event) {
+        humanChoice = event.target.id.toUpperCase();
+        console.log(humanChoice + " clicked!");
+        document.body.style.backgroundColor =
+          humanChoice === "ROCK"
+            ? "#ffcccb"
+            : humanChoice === "PAPER"
+            ? "#ccffcb"
+            : "#cbccff";
+        return humanChoice;
       }
 
+      // let humanChoice = "y";
+      // function getHumanChoice() {
+      //   humanChoice = window
+      //     .prompt("Choose an option - Rock, Paper, Scissors")
+      //     .toLowerCase();
+      //   console.log("Human Chose :", humanChoice);
+      // }
       let computerChoice = "x";
       function getComputerChoice() {
         let result = Math.random();
@@ -79,5 +113,38 @@
       console.log("Human Chose :", humanChoice);
       console.log("Computer Chose :", computerChoice);
     </script>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        /* width: 20px; */
+        background-color: #f4f4f4;
+      }
+      .button-container {
+        display: flex;
+        gap: 10px;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+      .rock {
+        background-color: grey;
+        color: white;
+      }
+      .paper {
+        background-color: black;
+        color: white;
+      }
+      .scissors {
+        background-color: teal;
+        color: white;
+      }
+    </style>
   </body>
 </html>
