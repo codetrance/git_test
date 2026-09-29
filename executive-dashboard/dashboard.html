@@ -1,0 +1,1291 @@
+<title>One Digital Operating Review</title>
+<meta name="description" content="Weekly Digital operating review: CQDIP scorecard, spend and value, programs, workforce and vendors, technology efficiency, A3 issues and the operating model.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: fixed navy rail (levels of disclosure) + sticky context bar (week, segment) + a single working canvas per view. */
+:root {
+  --bg: #eef1f4;
+  --surface: #ffffff;
+  --surface-2: #f6f8fa;
+  --ink: #0f1b2a;
+  --ink-2: #475466;
+  --muted: #778293;
+  --line: #e0e5eb;
+  --line-2: #c7cfd8;
+  --accent: #1d5ea6;
+  --accent-ink: #ffffff;
+  --accent-soft: #e5edf7;
+  --rail: #0e1a2a;
+  --rail-ink: #c6d0dc;
+  --rail-dim: #7d8ca0;
+  --rail-hi: #1c2c42;
+  --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100; --s5: #e87ba4;
+  --good: #0ca30c; --warn: #e89c00; --crit: #d03b3b; --none: #8a94a3;
+  --good-ink: #0a6e0a; --warn-ink: #8a5a00; --crit-ink: #b02a2a;
+  --good-bg: #e7f5e7; --warn-bg: #fdf3dc; --crit-bg: #fbe7e7; --none-bg: #eef0f3;
+  --shadow: 0 1px 2px rgba(15,27,42,.06), 0 1px 1px rgba(15,27,42,.04);
+  --f-sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-cond: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --r: 6px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0b1017; --surface: #131a23; --surface-2: #18212c; --ink: #e7ecf2; --ink-2: #a9b4c2; --muted: #7d8898;
+  --line: #222d3a; --line-2: #34414f; --accent: #5b9be0; --accent-ink: #08121e; --accent-soft: #1a2a3e;
+  --rail: #070b11; --rail-ink: #c6d0dc; --rail-dim: #6f7d90; --rail-hi: #152234;
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181;
+  --good: #0ca30c; --warn: #fab219; --crit: #e05252; --none: #6f7a89;
+  --good-ink: #5fd15f; --warn-ink: #fac24d; --crit-ink: #f08080;
+  --good-bg: #10261a; --warn-bg: #2b2310; --crit-bg: #2e1517; --none-bg: #1c2430;
+  --shadow: 0 1px 2px rgba(0,0,0,.3); color-scheme: dark;
+} }
+:root[data-theme="dark"] {
+  --bg: #0b1017; --surface: #131a23; --surface-2: #18212c; --ink: #e7ecf2; --ink-2: #a9b4c2; --muted: #7d8898;
+  --line: #222d3a; --line-2: #34414f; --accent: #5b9be0; --accent-ink: #08121e; --accent-soft: #1a2a3e;
+  --rail: #070b11; --rail-ink: #c6d0dc; --rail-dim: #6f7d90; --rail-hi: #152234;
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181;
+  --good: #0ca30c; --warn: #fab219; --crit: #e05252; --none: #6f7a89;
+  --good-ink: #5fd15f; --warn-ink: #fac24d; --crit-ink: #f08080;
+  --good-bg: #10261a; --warn-bg: #2b2310; --crit-bg: #2e1517; --none-bg: #1c2430;
+  --shadow: 0 1px 2px rgba(0,0,0,.3); color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-sans); font-size: 14px; line-height: 1.45; margin: 0; }
+button, select, input { font: inherit; color: inherit; }
+h1, h2, h3, h4 { margin: 0; text-wrap: balance; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.eyebrow { font-family: var(--f-cond); font-weight: 600; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+
+/* ---------- shell ---------- */
+.app { display: grid; grid-template-columns: 232px minmax(0, 1fr); min-height: 100vh; }
+.rail { background: var(--rail); color: var(--rail-ink); padding-block: 20px; position: sticky; top: 0; height: 100vh; overflow-y: auto; display: flex; flex-direction: column; gap: 18px; }
+.brand { padding-inline: 20px; display: grid; gap: 2px; }
+.brand-mark { display: flex; align-items: center; gap: 10px; }
+.brand-mark svg { flex: none; }
+.brand b { font-family: var(--f-cond); font-size: 17px; letter-spacing: .01em; color: #fff; font-weight: 600; }
+.brand span { font-size: 11.5px; color: var(--rail-dim); }
+.navgroup { display: grid; gap: 2px; }
+.navgroup > .eyebrow { color: var(--rail-dim); padding: 0 20px 4px; }
+.navbtn { all: unset; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 7px 20px; font-size: 13.5px; color: var(--rail-ink); border-left: 3px solid transparent; }
+.navbtn:hover { background: var(--rail-hi); color: #fff; }
+.navbtn[aria-current="page"] { background: var(--rail-hi); color: #fff; border-left-color: var(--s1); font-weight: 600; }
+.navbtn:focus-visible { outline: 2px solid var(--s1); outline-offset: -2px; }
+.navbtn .count { font-family: var(--f-mono); font-size: 11px; padding: 1px 6px; border-radius: 9px; background: rgba(208,59,59,.22); color: #ffb3b3; }
+.rail-foot { margin-top: auto; padding-inline: 20px; font-size: 11.5px; color: var(--rail-dim); display: grid; gap: 6px; }
+.rail-foot .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--good); margin-right: 6px; }
+
+.main { min-width: 0; display: flex; flex-direction: column; }
+.ctx { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--surface); border-bottom: 1px solid var(--line); padding: 10px 28px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
+.ctx-title { display: grid; gap: 0; min-width: 0; }
+.ctx-title h1 { font-family: var(--f-cond); font-weight: 600; font-size: 20px; letter-spacing: .005em; }
+.crumbs { font-size: 12px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+.crumbs b { color: var(--ink-2); font-weight: 600; }
+.ctx-controls { margin-left: auto; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.weekpill { display: flex; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: var(--r); padding: 5px 10px; background: var(--surface-2); font-size: 12.5px; }
+.weekpill .num { font-weight: 500; }
+.seg-select { display: flex; align-items: center; gap: 8px; }
+.seg-select label { font-size: 12px; color: var(--muted); }
+select { border: 1px solid var(--line-2); background: var(--surface); border-radius: var(--r); padding: 6px 30px 6px 10px; appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%); background-position: calc(100% - 15px) 55%, calc(100% - 10px) 55%; background-size: 5px 5px; background-repeat: no-repeat; cursor: pointer; font-weight: 500; }
+.btn { border: 1px solid var(--line-2); background: var(--surface); border-radius: var(--r); padding: 6px 12px; cursor: pointer; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; }
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn.primary:hover { filter: brightness(1.08); color: var(--accent-ink); }
+.banner { margin: 16px 28px 0; padding: 8px 12px; border: 1px dashed var(--line-2); border-radius: var(--r); font-size: 12.5px; color: var(--ink-2); background: var(--surface-2); }
+.canvas { padding: 20px 28px 48px; display: grid; gap: 20px; }
+.viewhead { display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: end; justify-content: space-between; }
+.viewhead h2 { font-family: var(--f-cond); font-size: 24px; font-weight: 600; }
+.viewhead p { margin: 4px 0 0; color: var(--ink-2); max-width: 78ch; }
+
+/* ---------- panels ---------- */
+.grid { display: grid; gap: 16px; }
+.g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.g5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.g-7-5 { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow); min-width: 0; display: flex; flex-direction: column; }
+.panel-h { padding: 14px 16px 10px; display: flex; gap: 12px; align-items: baseline; justify-content: space-between; flex-wrap: wrap; border-bottom: 1px solid var(--line); }
+.panel-h h3 { font-size: 14.5px; font-weight: 600; }
+.panel-h .sub { font-size: 12px; color: var(--muted); }
+.panel-b { padding: 14px 16px 16px; min-width: 0; }
+.panel-b.flush { padding: 0; }
+.scroll-x { overflow-x: auto; }
+
+/* status */
+.rag { display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 600; padding: 2px 8px 2px 6px; border-radius: 10px; white-space: nowrap; font-family: var(--f-cond); letter-spacing: .03em; text-transform: uppercase; }
+.rag svg { width: 12px; height: 12px; flex: none; }
+.rag.G { background: var(--good-bg); color: var(--good-ink); }
+.rag.A { background: var(--warn-bg); color: var(--warn-ink); }
+.rag.R { background: var(--crit-bg); color: var(--crit-ink); }
+.rag.N { background: var(--none-bg); color: var(--ink-2); }
+.dotrag { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex: none; }
+.dotrag.G { background: var(--good); } .dotrag.A { background: var(--warn); } .dotrag.R { background: var(--crit); } .dotrag.N { background: transparent; border: 1.5px solid var(--none); }
+.tag { display: inline-flex; align-items: center; font-size: 11px; padding: 1px 7px; border-radius: 4px; background: var(--surface-2); border: 1px solid var(--line); color: var(--ink-2); white-space: nowrap; }
+.tag.dir { background: var(--accent-soft); border-color: transparent; color: var(--accent); font-weight: 500; }
+.conf { font-size: 11px; font-family: var(--f-mono); color: var(--muted); white-space: nowrap; }
+.conf i { font-style: normal; display: inline-block; width: 5px; height: 9px; margin-right: 1px; background: var(--line-2); border-radius: 1px; vertical-align: -1px; }
+.conf i.on { background: var(--ink-2); }
+
+/* pillar strip */
+.pillars { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+.pillar { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px 14px; display: grid; gap: 8px; align-content: start; position: relative; overflow: hidden; box-shadow: var(--shadow); cursor: pointer; text-align: left; }
+.pillar::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 4px; background: var(--none); }
+.pillar.G::before { background: var(--good); } .pillar.A::before { background: var(--warn); } .pillar.R::before { background: var(--crit); }
+.pillar:hover { border-color: var(--line-2); }
+.pillar-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 4px 8px; }
+.pillar h4 { font-family: var(--f-cond); font-size: 18px; font-weight: 600; letter-spacing: .01em; }
+.pillar .alias { font-size: 11.5px; color: var(--muted); margin-top: -6px; }
+.pillar .why { font-size: 12.5px; color: var(--ink-2); line-height: 1.4; }
+.pillar .kdots { display: flex; gap: 4px; }
+
+/* lists */
+.list { display: grid; }
+.li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 10px; padding: 10px 16px; border-top: 1px solid var(--line); }
+.li:first-child { border-top: 0; }
+.li .ic { margin-top: 4px; }
+.li .t { font-weight: 500; }
+.li .m { grid-column: 2; display: flex; flex-wrap: wrap; gap: 6px 10px; font-size: 12px; color: var(--muted); align-items: center; }
+.li .d { grid-column: 2; font-size: 13px; color: var(--ink-2); }
+.empty { padding: 14px 16px; color: var(--muted); font-size: 13px; }
+
+/* tables */
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+th { text-align: left; font-family: var(--f-cond); font-weight: 600; font-size: 11.5px; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); padding: 8px 12px; border-bottom: 1px solid var(--line-2); white-space: nowrap; background: var(--surface); }
+td { padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+tbody tr:last-child td { border-bottom: 0; }
+td.r, th.r { text-align: right; }
+td.c, th.c { text-align: center; }
+tr.click { cursor: pointer; }
+tr.click:hover td { background: var(--surface-2); }
+.pname { font-weight: 600; }
+.psub { font-size: 12px; color: var(--muted); }
+
+/* KPI table */
+.kpi-pillar { display: grid; gap: 0; }
+.kpi-row { display: grid; grid-template-columns: minmax(180px, 2.2fr) 110px 90px 120px 96px minmax(160px, 2.5fr); gap: 12px; align-items: center; padding: 10px 16px; border-top: 1px solid var(--line); }
+.kpi-row.head { border-top: 0; padding-block: 6px; }
+.kpi-row .kname { font-weight: 500; }
+.kpi-row .kdef { font-size: 12px; color: var(--muted); }
+.kpi-row .kval { font-family: var(--f-mono); font-size: 15px; font-weight: 500; }
+.kpi-row .ktgt { font-family: var(--f-mono); font-size: 12.5px; color: var(--ink-2); }
+.kpi-row .kwhy { font-size: 12.5px; color: var(--ink-2); }
+.kpi-row .kmeta { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+
+/* bars */
+.hbar { display: grid; grid-template-columns: minmax(110px, 170px) minmax(0, 1fr) auto; gap: 6px 12px; align-items: center; }
+.hbar + .hbar { margin-top: 12px; }
+.hbar .lab { font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 8px; min-width: 0; }
+.hbar .lab small { display: block; font-weight: 400; color: var(--muted); font-size: 11.5px; }
+.sw { width: 10px; height: 10px; border-radius: 2px; flex: none; display: inline-block; }
+.track { position: relative; height: 16px; background: var(--surface-2); border-radius: 3px; }
+.track .fill { position: absolute; left: 0; top: 3px; bottom: 3px; border-radius: 0 3px 3px 0; }
+.track .fill.fc { top: 6px; bottom: 6px; opacity: .45; }
+.track .tick { position: absolute; top: -2px; bottom: -2px; width: 2px; background: var(--ink); border-radius: 1px; }
+.hbar .val { font-family: var(--f-mono); font-size: 12.5px; text-align: right; white-space: nowrap; }
+.hbar .val small { display: block; color: var(--muted); font-size: 11px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 12px; color: var(--ink-2); align-items: center; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend .ln { width: 16px; height: 0; border-top: 2px solid var(--ink-2); display: inline-block; }
+.legend .ln.dash { border-top-style: dashed; }
+.legend .tk { width: 2px; height: 12px; background: var(--ink); display: inline-block; }
+
+.stack { display: flex; gap: 2px; height: 28px; border-radius: 4px; overflow: hidden; }
+.stack > div { min-width: 2px; display: flex; align-items: center; padding-inline: 8px; font-size: 11.5px; font-weight: 600; color: #fff; white-space: nowrap; overflow: hidden; }
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; display: grid; gap: 2px; box-shadow: var(--shadow); }
+.stat .v { font-size: 24px; font-weight: 600; letter-spacing: -.01em; }
+.stat .v small { font-size: 13px; font-weight: 500; color: var(--muted); margin-left: 2px; }
+.stat .d { font-size: 12px; color: var(--ink-2); }
+.delta-bad { color: var(--crit-ink); font-weight: 600; } .delta-good { color: var(--good-ink); font-weight: 600; } .delta-warn { color: var(--warn-ink); font-weight: 600; }
+
+/* chart */
+.chart svg { width: 100%; height: auto; display: block; overflow: visible; }
+.chart text { fill: var(--muted); font-family: var(--f-mono); font-size: 11px; }
+.chart .grid-l { stroke: var(--line); stroke-width: 1; }
+.chart .base-l { stroke: var(--line-2); stroke-width: 1; }
+.chart .hit { fill: transparent; cursor: crosshair; }
+.chart .xh { stroke: var(--ink-2); stroke-width: 1; opacity: 0; pointer-events: none; }
+.chart g.col:hover .xh { opacity: .5; }
+.chart .endlab { fill: var(--ink); font-weight: 500; }
+
+/* brief */
+.brief-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.twoway { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.twoway > div + div { border-left: 1px solid var(--line); }
+.twoway h4 { font-size: 12.5px; padding: 10px 16px 4px; color: var(--ink-2); font-weight: 600; }
+.completeness { display: flex; gap: 18px; flex-wrap: wrap; font-size: 12.5px; color: var(--ink-2); align-items: center; }
+.completeness .meter { width: 120px; height: 6px; border-radius: 3px; background: var(--surface-2); border: 1px solid var(--line); overflow: hidden; display: inline-block; vertical-align: middle; margin-right: 6px; }
+.completeness .meter > i { display: block; height: 100%; background: var(--s1); }
+.decision { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; padding: 12px 16px; border-top: 1px solid var(--line); }
+.decision:first-child { border-top: 0; }
+.decision .by { font-family: var(--f-mono); font-size: 12px; color: var(--crit-ink); white-space: nowrap; }
+
+/* chips */
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { border: 1px solid var(--line-2); background: var(--surface); border-radius: 14px; padding: 3px 11px; font-size: 12.5px; cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+
+/* A3 */
+.a3 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.5fr); gap: 0; border-top: 1px solid var(--line); }
+.a3 > section { padding: 12px 16px; border-left: 1px solid var(--line); min-width: 0; }
+.a3 > section:first-child { border-left: 0; }
+.a3 h5 { margin: 0 0 6px; font-family: var(--f-cond); font-size: 11.5px; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.a3 p { margin: 0 0 8px; font-size: 13px; color: var(--ink-2); }
+.a3 ul { margin: 0; padding-left: 16px; font-size: 13px; color: var(--ink-2); display: grid; gap: 4px; }
+.flow { display: flex; flex-wrap: wrap; gap: 0; font-family: var(--f-cond); font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+.flow span { padding: 4px 14px 4px 10px; background: var(--surface-2); border: 1px solid var(--line); margin-right: -1px; clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 50%, calc(100% - 8px) 100%, 0 100%, 8px 50%); padding-left: 16px; color: var(--ink-2); }
+.flow span:first-child { clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 50%, calc(100% - 8px) 100%, 0 100%); padding-left: 10px; }
+.esc { display: flex; gap: 4px; align-items: center; font-size: 12px; }
+.esc i { width: 18px; height: 6px; border-radius: 2px; background: var(--line-2); display: inline-block; }
+.esc i.on { background: var(--crit); }
+.actions td { font-size: 12.5px; }
+
+/* operating model */
+.rhythm { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0; }
+.rhythm > div { padding: 12px 14px; border-left: 1px solid var(--line); display: grid; gap: 4px; align-content: start; }
+.rhythm > div:first-child { border-left: 0; }
+.rhythm .day { font-family: var(--f-cond); font-weight: 600; font-size: 13px; }
+.rhythm .when { font-family: var(--f-mono); font-size: 11.5px; color: var(--muted); }
+.rhythm .what { font-size: 12.5px; color: var(--ink-2); }
+.rhythm .key { background: var(--accent-soft); }
+.rhythm .key .day { color: var(--accent); }
+.hub { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; align-items: stretch; }
+.hub > div { border: 1px solid var(--line); border-radius: 6px; padding: 10px 12px; background: var(--surface-2); display: grid; gap: 4px; align-content: start; position: relative; }
+.hub > div:not(:last-child)::after { content: "→"; position: absolute; right: -11px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 14px; background: var(--surface); line-height: 1; }
+.hub b { font-size: 13px; }
+.hub span { font-size: 12px; color: var(--ink-2); }
+.phase { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.phase > div { border-top: 3px solid var(--line-2); padding-top: 10px; display: grid; gap: 6px; align-content: start; }
+.phase > div.now { border-top-color: var(--accent); }
+.phase b { font-size: 13.5px; }
+.phase ul { margin: 0; padding-left: 16px; font-size: 12.5px; color: var(--ink-2); display: grid; gap: 3px; }
+.cov { font-size: 11px; font-weight: 600; font-family: var(--f-cond); letter-spacing: .04em; text-transform: uppercase; padding: 2px 7px; border-radius: 4px; }
+.cov.have { background: var(--good-bg); color: var(--good-ink); }
+.cov.part { background: var(--warn-bg); color: var(--warn-ink); }
+.cov.gap { background: var(--crit-bg); color: var(--crit-ink); }
+
+/* drawer + modal */
+.scrim { position: fixed; inset: 0; background: rgba(8,14,22,.45); z-index: 40; }
+.drawer { position: fixed; top: 0; right: 0; bottom: 0; width: min(720px, 100%); background: var(--bg); z-index: 41; overflow-y: auto; box-shadow: -8px 0 24px rgba(0,0,0,.18); display: flex; flex-direction: column; }
+.drawer-h { position: sticky; top: 0; background: var(--surface); border-bottom: 1px solid var(--line); padding: calc(14px + env(safe-area-inset-top, 0px)) 20px 12px; display: grid; gap: 6px; z-index: 2; }
+.drawer-h .row { display: flex; justify-content: space-between; gap: 12px; align-items: start; }
+.drawer-h h3 { font-family: var(--f-cond); font-size: 21px; font-weight: 600; }
+.drawer-b { padding: 16px 20px 32px; display: grid; gap: 14px; }
+.x { all: unset; cursor: pointer; font-size: 20px; line-height: 1; padding: 4px 8px; border-radius: 4px; color: var(--ink-2); }
+.x:hover { background: var(--surface-2); }
+.x:focus-visible { outline: 2px solid var(--accent); }
+.hgrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.hgrid > div { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; display: grid; gap: 4px; }
+.modal { position: fixed; z-index: 41; top: 50%; left: 50%; transform: translate(-50%, -50%); width: min(760px, calc(100% - 32px)); max-height: calc(100% - 48px); background: var(--surface); border-radius: 10px; box-shadow: 0 20px 50px rgba(0,0,0,.3); display: flex; flex-direction: column; }
+.modal-h { padding: 14px 18px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+.modal-b { padding: 0; overflow: auto; }
+.modal pre { margin: 0; padding: 16px 18px; font-family: var(--f-mono); font-size: 12.5px; line-height: 1.55; white-space: pre-wrap; color: var(--ink); }
+.modal-f { padding: 12px 18px; border-top: 1px solid var(--line); display: flex; gap: 10px; justify-content: space-between; align-items: center; flex-wrap: wrap; font-size: 12px; color: var(--muted); }
+
+.tip { position: fixed; z-index: 60; pointer-events: none; background: var(--ink); color: var(--surface); padding: 7px 10px; border-radius: 6px; font-size: 12px; line-height: 1.45; white-space: pre-line; max-width: 280px; box-shadow: 0 4px 14px rgba(0,0,0,.2); font-family: var(--f-sans); }
+.tip b { font-weight: 600; }
+.note { font-size: 12px; color: var(--muted); }
+.heat td.cell { text-align: center; font-family: var(--f-mono); font-size: 12px; }
+.toast { position: fixed; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); left: 50%; transform: translateX(-50%); background: var(--ink); color: var(--surface); padding: 8px 14px; border-radius: 6px; font-size: 13px; z-index: 70; }
+
+@media (max-width: 1180px) {
+  .pillars { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .g5 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .g-7-5 { grid-template-columns: minmax(0, 1fr); }
+  .rhythm { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .rhythm > div:nth-child(4) { border-left: 0; }
+  .rhythm > div:nth-child(n+4) { border-top: 1px solid var(--line); }
+  .kpi-row { grid-template-columns: minmax(160px, 2fr) 100px 80px 110px 90px; }
+  .kpi-row .kwhy { grid-column: 1 / -1; }
+  .kpi-row.head > :last-child { display: none; }
+}
+@media (max-width: 900px) {
+  .app { grid-template-columns: minmax(0, 1fr); }
+  .rail { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; height: auto; flex-direction: row; align-items: center; padding: 8px 16px; gap: 14px; overflow-x: auto; }
+  .brand span, .rail-foot, .navgroup > .eyebrow { display: none; }
+  .brand { padding: 0; }
+  .navgroup { display: flex; gap: 2px; }
+  .navbtn { padding: 6px 10px; border-left: 0; border-bottom: 2px solid transparent; white-space: nowrap; border-radius: 4px; }
+  .navbtn[aria-current="page"] { border-bottom-color: var(--s1); }
+  .ctx { position: static; padding: 10px 16px; }
+  .ctx-controls { margin-left: 0; }
+  .canvas { padding: 16px 16px 40px; }
+  .banner { margin: 12px 16px 0; }
+  .g2, .g3, .brief-grid, .twoway, .a3, .hub, .phase { grid-template-columns: minmax(0, 1fr); }
+  .twoway > div + div, .a3 > section { border-left: 0; border-top: 1px solid var(--line); }
+  .a3 > section:first-child { border-top: 0; }
+  .hub > div:not(:last-child)::after { content: "↓"; right: 50%; top: auto; bottom: -13px; transform: translateX(50%); }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .pillars, .g5 { grid-template-columns: minmax(0, 1fr); }
+  .rhythm { grid-template-columns: minmax(0, 1fr); }
+  .rhythm > div { border-left: 0; border-top: 1px solid var(--line); }
+  .kpi-row { grid-template-columns: minmax(0, 1fr) auto; }
+  .kpi-row > :nth-child(3), .kpi-row > :nth-child(4) { display: none; }
+  .kpi-row.head { display: none; }
+  .hbar { grid-template-columns: minmax(0, 1fr) auto; }
+  .hbar .track { grid-column: 1 / -1; grid-row: 2; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .drawer { animation: slide .18s ease-out; }
+  @keyframes slide { from { transform: translateX(24px); opacity: .6; } to { transform: none; opacity: 1; } }
+}
+</style>
+
+<div class="app">
+  <nav class="rail" aria-label="Views">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect x="1" y="1" width="24" height="24" rx="5" fill="none" stroke="#3987e5" stroke-width="2"/><path d="M7 16.5 11 12l3 3 5-6" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <b>One Digital</b>
+      </div>
+      <span>Operating Review · Enterprise Systems PMO</span>
+    </div>
+    <div class="navgroup"><div class="eyebrow">Executive</div>
+      <button class="navbtn" data-view="brief">Weekly Brief</button>
+      <button class="navbtn" data-view="scorecard">Scorecard</button>
+    </div>
+    <div class="navgroup"><div class="eyebrow">Portfolio</div>
+      <button class="navbtn" data-view="spend">Spend &amp; Value</button>
+      <button class="navbtn" data-view="programs">Programs</button>
+      <button class="navbtn" data-view="workforce">Workforce &amp; Vendors</button>
+      <button class="navbtn" data-view="tech">Technology Efficiency</button>
+    </div>
+    <div class="navgroup"><div class="eyebrow">Governance</div>
+      <button class="navbtn" data-view="issues">Issues (A3) <span class="count" id="a3count"></span></button>
+      <button class="navbtn" data-view="model">Operating Model</button>
+    </div>
+    <div class="rail-foot">
+      <div><span class="dot"></span>Feeds refreshed Tue 29 Sep, 06:00</div>
+      <div>Draft for Thursday 1 Oct distribution, 17:00</div>
+    </div>
+  </nav>
+
+  <div class="main">
+    <header class="ctx">
+      <div class="ctx-title">
+        <div class="crumbs" id="crumbs"></div>
+        <h1 id="viewTitle">Weekly Brief</h1>
+      </div>
+      <div class="ctx-controls">
+        <div class="weekpill"><span class="eyebrow">Week</span><span class="num">40</span><span style="color:var(--muted)">28 Sep – 2 Oct 2026</span></div>
+        <div class="seg-select">
+          <label for="seg">View for</label>
+          <select id="seg"></select>
+        </div>
+        <button class="btn primary" id="genBrief" type="button">Draft Thursday summary</button>
+      </div>
+    </header>
+    <div class="banner"><b>Illustrative data.</b> Figures, vendors and owners are sample values to show the model. Replace them with feeds from SAP, Jira/Asana, ServiceNow, Workday, Flexera and vendor reports.</div>
+    <main class="canvas" id="canvas"></main>
+  </div>
+</div>
+<div class="tip" id="tip" hidden></div>
+<div id="overlay"></div>
+
+<script>
+/* =====================================================================
+   DATA — illustrative. Each block maps to a source system (see Operating Model).
+   ===================================================================== */
+const SEGS = [
+  { id: 'ALL', name: 'Global Digital (all segments)', short: 'Global', lead: 'VP Enterprise Systems' },
+  { id: 'RES', name: 'Residential Solutions', short: 'Residential', lead: 'Segment Digital Lead, Residential' },
+  { id: 'CIS', name: 'Commercial & Industrial', short: 'Commercial', lead: 'Segment Digital Lead, C&I' },
+  { id: 'TRF', name: 'Transport Refrigeration', short: 'Transport', lead: 'Segment Digital Lead, Transport' },
+  { id: 'SVC', name: 'Services & Aftermarket', short: 'Services', lead: 'Segment Digital Lead, Services' },
+  { id: 'ENT', name: 'Enterprise Functions & Central Digital', short: 'Enterprise', lead: 'Head of Central Digital' }
+];
+const SEG_IDS = SEGS.map(s => s.id);
+const segName = id => (SEGS.find(s => s.id === id) || {}).short || id;
+
+const CATS = [
+  { id: 'Run', label: 'Run', desc: 'Keep the lights on: licences, AMS, hosting', type: 'Run', c: 'var(--s1)' },
+  { id: 'Operate', label: 'Operate', desc: 'Service ops, infra & cyber operations', type: 'Run', c: 'var(--s2)' },
+  { id: 'Build', label: 'Build', desc: 'Enhancements & new capability', type: 'Change', c: 'var(--s3)' },
+  { id: 'Transform', label: 'Transform', desc: 'Time-bound transformation programs', type: 'Change', c: 'var(--s4)' },
+  { id: 'Innovate', label: 'Innovate', desc: 'Pilots, AI, new digital revenue', type: 'Change', c: 'var(--s5)' }
+];
+// [YTD budget, YTD actual, FY forecast] in $M, YTD = Jan–Sep (Sep is flash)
+const SPEND = {
+  RES: { Run: [22.0, 22.6, 30.4], Operate: [9.5, 9.2, 12.5], Build: [18.0, 16.9, 23.3], Transform: [11.5, 10.2, 14.9], Innovate: [3.0, 2.0, 3.6] },
+  CIS: { Run: [30.0, 31.9, 41.6], Operate: [12.0, 12.3, 16.4], Build: [22.5, 20.9, 29.6], Transform: [18.0, 21.2, 26.4], Innovate: [4.5, 3.1, 5.3] },
+  TRF: { Run: [12.5, 12.6, 16.8], Operate: [5.0, 4.9, 6.6], Build: [8.0, 7.4, 10.4], Transform: [3.0, 2.9, 4.0], Innovate: [2.0, 1.5, 2.6] },
+  SVC: { Run: [16.5, 17.4, 23.2], Operate: [7.0, 7.1, 9.5], Build: [11.0, 10.3, 14.4], Transform: [2.5, 2.4, 3.3], Innovate: [3.5, 2.3, 3.9] },
+  ENT: { Run: [45.0, 45.3, 60.6], Operate: [22.0, 20.6, 28.0], Build: [6.5, 3.2, 6.8], Transform: [11.5, 13.2, 19.2], Innovate: [2.0, 0.7, 1.0] }
+};
+const COST_TYPES = [
+  { id: 'fte', label: 'Internal FTE labour', share: .29 },
+  { id: 'ctr', label: 'Contract labour (T&M)', share: .24 },
+  { id: 'sw', label: 'Software & licensing', share: .21 },
+  { id: 'ms', label: 'Managed services / third party', share: .11 },
+  { id: 'cloud', label: 'Cloud & hosting', share: .10 },
+  { id: 'hw', label: 'Hardware & devices', share: .05 }
+];
+const COST_TILT = { RES: {}, CIS: { ctr: 1.25, fte: .9 }, TRF: { fte: 1.1 }, SVC: { ms: 1.2 }, ENT: { sw: 1.3, cloud: 1.3, ctr: .8 } };
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const PROFILE = [.103,.106,.110,.109,.112,.111,.114,.117,.118];
+
+const PROGRAMS = [
+  { id: 'P01', name: 'S/4HANA Global Template, Wave 2', seg: 'CIS', serves: ['CIS','ENT'], team: 'Enterprise Systems', cat: 'Transform', vendor: 'Northbeam Consulting', sponsor: 'CFO, Commercial & Industrial', owner: 'Director, SAP Delivery',
+    budget: 48.0, actual: 39.2, forecast: 52.4, pct: 64, phase: 'Build / Test (SIT 2)', h: { cost: 'R', schedule: 'R', scope: 'A', risk: 'R' }, overall: 'R',
+    next: { m: 'SIT 2 exit gate', d: '2026-10-09', s: 'At risk' }, value: { planM: 20.2, realM: 0, text: '$14.0M/yr working capital, $6.2M/yr opex' }, kpi: 'Order-to-cash cycle 3 days shorter after go-live',
+    aug: { spend: 4.6, delivered: 'SIT 2 cycles 1–2 run: 1,412 test cases, 83% pass. 3 of 5 data objects passed the migration quality gate.', vfm: 'Partial' },
+    inits: [ { n: 'Finance & Controlling', s: 'A', epic: 'S4W2-FIN', open: 64 }, { n: 'Order-to-Cash', s: 'R', epic: 'S4W2-OTC', open: 142 }, { n: 'Plan-to-Produce (3 plants)', s: 'A', epic: 'S4W2-PTP', open: 97 }, { n: 'Data migration', s: 'R', epic: 'S4W2-DM', open: 58 } ] },
+  { id: 'P02', name: 'Connected Equipment IoT Platform', seg: 'CIS', serves: ['CIS','SVC'], team: 'Commercial Digital', cat: 'Build', vendor: 'Halcyon Data Labs', sponsor: 'President, Commercial HVAC', owner: 'Head of Connected Products',
+    budget: 18.5, actual: 13.1, forecast: 18.9, pct: 71, phase: 'Scale', h: { cost: 'G', schedule: 'A', scope: 'G', risk: 'A' }, overall: 'A',
+    next: { m: 'Chiller fleet onboarding, EMEA', d: '2026-10-20', s: 'On track' }, value: { planM: 9.5, realM: 4.1, text: 'Service contract attach +4 pts; remote diagnostics revenue' }, kpi: 'Connected commercial units: 158K of 180K target',
+    aug: { spend: 1.7, delivered: '11,400 rooftop units onboarded; predictive fault model v2 live in NA.', vfm: 'As planned' },
+    inits: [ { n: 'Device onboarding at scale', s: 'A', epic: 'IOT-ONB', open: 38 }, { n: 'Predictive fault models', s: 'G', epic: 'IOT-ML', open: 21 }, { n: 'Customer portal integration', s: 'G', epic: 'IOT-CP', open: 17 } ] },
+  { id: 'P03', name: 'Dealer & Distributor Portal', seg: 'RES', serves: ['RES'], team: 'Residential Digital', cat: 'Build', vendor: 'Arbor Digital', sponsor: 'President, Residential', owner: 'Director, Residential Digital',
+    budget: 9.2, actual: 6.8, forecast: 9.0, pct: 82, phase: 'Release 3', h: { cost: 'G', schedule: 'G', scope: 'G', risk: 'G' }, overall: 'G',
+    next: { m: 'Release 3.3: warranty self-service', d: '2026-10-15', s: 'On track' }, value: { planM: 6.0, realM: 3.9, text: 'Quote turnaround, dealer self-service, call deflection' }, kpi: 'Quote turnaround 38% faster; 1,850 dealers active',
+    aug: { spend: 0.8, delivered: 'Release 3.2 live to 1,850 dealers; order status self-service took 9% of calls out of the contact centre.', vfm: 'As planned' },
+    inits: [ { n: 'Quote & order self-service', s: 'G', epic: 'DLR-Q2O', open: 12 }, { n: 'Warranty self-service', s: 'G', epic: 'DLR-WTY', open: 26 } ] },
+  { id: 'P04', name: 'Field Service Modernization', seg: 'SVC', serves: ['SVC','CIS'], team: 'Services Digital', cat: 'Build', vendor: 'Arbor Digital', sponsor: 'President, Services', owner: 'Director, Service Digital',
+    budget: 14.0, actual: 10.9, forecast: 15.1, pct: 58, phase: 'Wave 2 rollout', h: { cost: 'A', schedule: 'A', scope: 'G', risk: 'A' }, overall: 'A',
+    next: { m: 'Wave 2: 900 technicians (NA East)', d: '2026-11-02', s: 'At risk' }, value: { planM: 7.8, realM: 1.6, text: 'Technician utilisation +5 pts, first-time fix +4 pts' }, kpi: 'First-time fix 81% (target 84%)',
+    aug: { spend: 1.3, delivered: 'Scheduling optimiser live for 1,100 technicians. Mobile app offline mode slipped to Sep.', vfm: 'Partial' },
+    inits: [ { n: 'Scheduling & dispatch', s: 'G', epic: 'FSM-SCH', open: 19 }, { n: 'Mobile technician app', s: 'A', epic: 'FSM-MOB', open: 44 }, { n: 'Parts & inventory integration', s: 'A', epic: 'FSM-PRT', open: 31 } ] },
+  { id: 'P05', name: 'Commercial Quote-to-Cash (CPQ)', seg: 'CIS', serves: ['CIS'], team: 'Commercial Digital', cat: 'Build', vendor: 'Arbor Digital', sponsor: 'SVP Sales, Commercial', owner: 'Director, Commercial Apps',
+    budget: 7.6, actual: 5.9, forecast: 7.4, pct: 88, phase: 'Hypercare', h: { cost: 'G', schedule: 'G', scope: 'G', risk: 'G' }, overall: 'G',
+    next: { m: 'Hypercare exit, NA chillers', d: '2026-10-06', s: 'On track' }, value: { planM: 4.2, realM: 0.9, text: 'Quote cycle time, pricing leakage' }, kpi: 'Quote cycle time 9 → 4 days',
+    aug: { spend: 0.6, delivered: 'CPQ go-live for NA chillers; 214 quotes processed in week 1.', vfm: 'As planned' },
+    inits: [ { n: 'Chillers & applied', s: 'G', epic: 'CPQ-APL', open: 8 }, { n: 'Unitary products', s: 'G', epic: 'CPQ-UNI', open: 15 } ] },
+  { id: 'P06', name: 'Transport Telematics Data Platform', seg: 'TRF', serves: ['TRF'], team: 'Transport Digital', cat: 'Build', vendor: 'Halcyon Data Labs', sponsor: 'President, Transport Refrigeration', owner: 'Director, Transport Digital',
+    budget: 6.4, actual: 4.7, forecast: 6.3, pct: 76, phase: 'Scale', h: { cost: 'G', schedule: 'G', scope: 'G', risk: 'G' }, overall: 'G',
+    next: { m: 'Cold-chain compliance reports for fleets', d: '2026-10-23', s: 'On track' }, value: { planM: 3.5, realM: 2.2, text: 'Subscription revenue, fewer spoilage claims' }, kpi: 'Units on platform: 116K (target 110K)',
+    aug: { spend: 0.5, delivered: 'Reefer temperature alerts reach customers in under 2 minutes; 116K units ingesting.', vfm: 'Above plan' },
+    inits: [ { n: 'Telematics ingestion', s: 'G', epic: 'TEL-ING', open: 6 }, { n: 'Customer compliance reporting', s: 'G', epic: 'TEL-RPT', open: 14 } ] },
+  { id: 'P07', name: 'Enterprise Data & Analytics Lakehouse', seg: 'ENT', serves: ['RES','CIS','TRF','SVC','ENT'], team: 'Data & Analytics', cat: 'Transform', vendor: 'Halcyon Data Labs', sponsor: 'CFO', owner: 'Head of Data & Analytics',
+    budget: 12.8, actual: 10.4, forecast: 13.6, pct: 55, phase: 'Build', h: { cost: 'A', schedule: 'A', scope: 'A', risk: 'G' }, overall: 'A',
+    next: { m: 'Finance data products v1 (margin, spend)', d: '2026-10-30', s: 'On track' }, value: { planM: 5.0, realM: 0.8, text: 'Report rationalisation, faster close, one set of numbers' }, kpi: '312 legacy reports retired of 900',
+    aug: { spend: 1.2, delivered: 'Commercial margin dashboard delivered to C&I finance; 41 legacy reports retired.', vfm: 'Partial' },
+    inits: [ { n: 'Finance data products', s: 'G', epic: 'DAT-FIN', open: 22 }, { n: 'Commercial data products', s: 'A', epic: 'DAT-COM', open: 35 }, { n: 'Portfolio & spend data mart (this hub)', s: 'A', epic: 'DAT-PMO', open: 18 } ] },
+  { id: 'P08', name: 'Workday HCM Optimization', seg: 'ENT', serves: ['ENT'], team: 'Enterprise Systems', cat: 'Build', vendor: 'Kestrel Systems', sponsor: 'CHRO', owner: 'Director, HR Technology',
+    budget: 3.9, actual: 2.8, forecast: 3.7, pct: 69, phase: 'Build', h: { cost: 'G', schedule: 'G', scope: 'A', risk: 'G' }, overall: 'G',
+    next: { m: 'Skills taxonomy live (Digital org first)', d: '2026-11-12', s: 'On track' }, value: { planM: 1.4, realM: 0.3, text: 'Recruiting cycle time, skills visibility' }, kpi: 'Time-to-hire 58 → 45 days',
+    aug: { spend: 0.3, delivered: 'Recruiting module redesign in UAT.', vfm: 'As planned' },
+    inits: [ { n: 'Recruiting redesign', s: 'G', epic: 'WD-REC', open: 11 }, { n: 'Skills taxonomy', s: 'A', epic: 'WD-SKL', open: 16 } ] },
+  { id: 'P09', name: 'Cyber Resilience & OT Security', seg: 'ENT', serves: ['RES','CIS','TRF','SVC','ENT'], team: 'Infrastructure & Cyber', cat: 'Operate', vendor: 'Meridian Tech Services', sponsor: 'CIO', owner: 'CISO',
+    budget: 11.2, actual: 8.9, forecast: 11.6, pct: 62, phase: 'Remediate', h: { cost: 'G', schedule: 'A', scope: 'G', risk: 'A' }, overall: 'A',
+    next: { m: 'OT segmentation: plants 7–10', d: '2026-10-27', s: 'At risk' }, value: { planM: 0, realM: 0, text: 'Risk reduction (non-financial): OT exposure score' }, kpi: 'Plants segmented: 6 of 14',
+    aug: { spend: 1.0, delivered: 'OT network segmentation done at 2 plants; MFA coverage 97%.', vfm: 'As planned' },
+    inits: [ { n: 'OT network segmentation', s: 'A', epic: 'SEC-OT', open: 29 }, { n: 'Identity & MFA', s: 'G', epic: 'SEC-IAM', open: 7 } ] },
+  { id: 'P10', name: 'Plant MES Standardization', seg: 'RES', serves: ['RES','CIS'], team: 'Enterprise Systems', cat: 'Transform', vendor: 'Kestrel Systems', sponsor: 'SVP Operations', owner: 'Director, Manufacturing Systems',
+    budget: 8.8, actual: 7.6, forecast: 10.1, pct: 47, phase: 'Deploy (plant 2 of 6)', h: { cost: 'R', schedule: 'R', scope: 'G', risk: 'A' }, overall: 'R',
+    next: { m: 'Plant 2 go-live', d: '2026-10-19', s: 'Late' }, value: { planM: 3.8, realM: 0.4, text: 'Scrap reduction, OEE +3 pts, traceability' }, kpi: 'OEE at plant 1 +2.1 pts',
+    aug: { spend: 0.9, delivered: 'Plant 2 integration test found 14 OT network defects; go-live moved 3 weeks.', vfm: 'Below' },
+    inits: [ { n: 'Plant 2 deployment', s: 'R', epic: 'MES-P2', open: 33 }, { n: 'Global MES template', s: 'G', epic: 'MES-TPL', open: 9 } ] },
+  { id: 'P11', name: 'GenAI Service Copilot', seg: 'SVC', serves: ['SVC'], team: 'Services Digital', cat: 'Innovate', vendor: 'Halcyon Data Labs', sponsor: 'President, Services', owner: 'Head of AI Products',
+    budget: 2.4, actual: 1.5, forecast: 2.3, pct: 60, phase: 'Pilot', h: { cost: 'G', schedule: 'G', scope: 'G', risk: 'A' }, overall: 'G',
+    next: { m: 'Pilot readout and scale decision', d: '2026-10-28', s: 'On track' }, value: { planM: 2.0, realM: 0.2, text: 'First-time fix, technician ramp-up time' }, kpi: 'First-time fix +6 pts in pilot group (40 technicians)',
+    aug: { spend: 0.2, delivered: 'Copilot pilot extended to 40 technicians; manual retrieval accuracy 91%.', vfm: 'Above plan' },
+    inits: [ { n: 'Technician copilot pilot', s: 'G', epic: 'AI-COP', open: 10 }, { n: 'Knowledge base curation', s: 'A', epic: 'AI-KB', open: 23 } ] },
+  { id: 'P12', name: 'Cloud Migration & Data Centre Exit', seg: 'ENT', serves: ['ENT'], team: 'Infrastructure & Cyber', cat: 'Transform', vendor: 'Meridian Tech Services', sponsor: 'CIO', owner: 'Director, Infrastructure',
+    budget: 10.5, actual: 8.3, forecast: 10.4, pct: 79, phase: 'Migrate', h: { cost: 'G', schedule: 'G', scope: 'G', risk: 'G' }, overall: 'G',
+    next: { m: 'Wave 7: 22 workloads', d: '2026-10-17', s: 'On track' }, value: { planM: 4.6, realM: 2.9, text: 'DC lease exit, hardware refresh avoided' }, kpi: 'Workloads migrated: 142 of 180',
+    aug: { spend: 0.9, delivered: 'Wave 6 done: 19 workloads migrated, 0 P1 incidents.', vfm: 'As planned' },
+    inits: [ { n: 'Migration waves 7–9', s: 'G', epic: 'CLD-MIG', open: 41 }, { n: 'DC decommission', s: 'G', epic: 'CLD-DC', open: 12 } ] },
+  { id: 'P13', name: 'A2L Refrigerant Transition: Product Data Readiness', seg: 'RES', serves: ['RES','CIS'], team: 'Residential Digital', cat: 'Build', vendor: 'Kestrel Systems', sponsor: 'SVP Engineering', owner: 'Director, PLM Systems',
+    budget: 4.1, actual: 3.2, forecast: 4.5, pct: 72, phase: 'Build', h: { cost: 'A', schedule: 'G', scope: 'A', risk: 'A' }, overall: 'A',
+    next: { m: 'A2L product data published to dealer portal', d: '2026-10-12', s: 'On track' }, value: { planM: 0, realM: 0, text: 'Regulatory compliance; protects revenue on 1,200 SKUs' }, kpi: 'SKUs with complete A2L data: 910 of 1,200',
+    aug: { spend: 0.4, delivered: '220 SKUs completed; PLM-to-SAP material master sync automated.', vfm: 'As planned' },
+    inits: [ { n: 'PLM data completion', s: 'A', epic: 'A2L-PLM', open: 27 }, { n: 'Downstream syndication', s: 'G', epic: 'A2L-SYN', open: 9 } ] }
+];
+
+// KPI framework: Cost, Quality, Delivery, Innovation, People. Values per segment in SEG_IDS order.
+const PILLARS = [
+  { id: 'cost', name: 'Cost', alias: 'Value for money' },
+  { id: 'quality', name: 'Quality', alias: 'Reliability & experience' },
+  { id: 'delivery', name: 'Delivery', alias: 'Predictability & outcomes' },
+  { id: 'innovation', name: 'Innovation', alias: 'Growth & new capability' },
+  { id: 'people', name: 'People', alias: 'Talent & capacity' }
+];
+const KPIS = [
+  { id: 'c1', p: 'cost', name: 'Spend vs. budget (YTD)', unit: '%', dir: 'band', lo: -3, hi: 1, loA: -6, hiA: 3, calc: 'spendVar', src: 'SAP FI/CO + BPC', conf: 3, owner: 'Digital Finance BP', def: 'YTD actual vs. YTD budget. Underspend beyond 3% is also flagged, because it usually means delivery is slipping.',
+    why: { _: 'Within tolerance.', ALL: 'Underspend sits in Build and Innovate, which reflects delivery slippage, not savings.', CIS: 'Transform is 18% over plan: S/4 Wave 2 extended testing and extra data-migration contractors.', ENT: 'Build underspent by half: Workday skills and D&A hiring behind plan.' } },
+  { id: 'c2', p: 'cost', name: 'Run share of spend', unit: '%', dir: 'down', target: 58, amber: 62, calc: 'runShare', src: 'SAP CO, TBM category tags', conf: 2, owner: 'Digital Finance BP', def: 'Run + Operate as a share of total Digital spend. Lower means more money goes to change.',
+    why: { _: 'Run share at or below target.', ALL: 'Run share has risen 2 pts YoY. Licence growth (SAP, Salesforce) is outpacing retirements.', ENT: 'Central shared services carry most licence and infrastructure cost; allocation to segments is still manual.', SVC: 'Contact-centre platform licences grew with seat count.' } },
+  { id: 'c3', p: 'cost', name: 'SAP licence utilisation', unit: '%', dir: 'up', target: 85, amber: 75, calc: 'sapUtil', entOnly: true, src: 'Flexera + SAP USMM (unreconciled)', conf: 1, owner: 'Director, SAP Delivery', def: 'Users active in the last 90 days as a share of licences purchased. Enterprise-level only.',
+    why: { _: 'Baseline not yet reconciled: Flexera and SAP USMM differ by 1,154 users. Treat as indicative.' } },
+  { id: 'q1', p: 'quality', name: 'Critical app availability', unit: '%', dir: 'up', target: 99.9, amber: 99.5, vals: [99.82, 99.91, 99.64, 99.95, 99.78, 99.88], dp: 2, src: 'ServiceNow + monitoring', conf: 3, owner: 'Director, Service Operations', def: 'Availability of Tier-1 applications (ERP, CPQ, FSM, portals) against SLA, 4-week rolling.',
+    why: { _: 'At or above SLA.', ALL: 'Two ERP interface outages in C&I cost 5.2 hours of order entry.', CIS: 'Two ERP interface outages (EDI to distributors) totalling 5.2 hrs.', SVC: 'FSM mobile sync degraded for 3 hrs after a vendor release.' } },
+  { id: 'q2', p: 'quality', name: 'P1/P2 incidents (this week)', unit: '', dir: 'down', target: [12, 3, 4, 2, 3, 4], vals: [14, 2, 6, 1, 3, 2], src: 'ServiceNow', conf: 3, owner: 'Director, Service Operations', def: 'Priority 1 and 2 incidents opened this week.',
+    why: { _: 'Within threshold.', ALL: '6 of 14 P1/P2s were in C&I integrations. Problem record PRB-2291 is open.', CIS: 'EDI and pricing-interface failures after the S/4 Wave 1 patch.' } },
+  { id: 'q3', p: 'quality', name: 'Change success rate', unit: '%', dir: 'up', target: 97, amber: 94, vals: [95.8, 97.9, 93.1, 98.4, 96.2, 96.9], dp: 1, src: 'ServiceNow change', conf: 3, owner: 'Change Manager', def: 'Changes implemented without rollback or incident, 4-week rolling.',
+    why: { _: 'Above target.', ALL: 'C&I emergency changes are driving failures.', CIS: '9 emergency changes in 4 weeks, 3 rolled back.', SVC: 'One failed FSM release rolled back.', ENT: 'One network change caused a plant outage.' } },
+  { id: 'q4', p: 'quality', name: 'Escaped defects per release', unit: '', dir: 'down', target: 2, amber: 3, vals: [2.4, 1.6, 3.8, 1.2, 2.1, 1.9], dp: 1, src: 'Jira', conf: 2, owner: 'Head of Quality Engineering', def: 'Production defects traced to a release, per release, 13-week average.',
+    why: { _: 'Within target.', ALL: 'C&I test automation coverage is 31%, against 60% elsewhere.', CIS: 'Low regression automation on the SAP pricing and EDI flows.', SVC: 'Mobile app regression gaps.' } },
+  { id: 'd1', p: 'delivery', name: 'Milestones on time (13-wk)', unit: '%', dir: 'up', target: 85, amber: 75, vals: [78, 88, 64, 91, 80, 83], src: 'Jira / Asana', conf: 2, owner: 'Digital PMO', def: 'Committed milestones hit within 5 business days of baseline date, rolling 13 weeks.',
+    why: { _: 'On plan.', ALL: 'S/4 Wave 2 and MES Plant 2 account for 7 of 11 missed milestones.', CIS: 'S/4 Wave 2 SIT and data-migration gates missed.', SVC: 'FSM mobile offline mode slipped 4 weeks.', ENT: 'OT segmentation plants 5–6 slipped for shutdown windows.' } },
+  { id: 'd2', p: 'delivery', name: 'Programs reporting green', unit: '%', dir: 'up', target: 70, amber: 45, calc: 'progGreen', src: 'Program status (this hub)', conf: 2, owner: 'Digital PMO', def: 'Share of in-scope programs with overall status green, using the common RAG rules.',
+    why: { _: 'Healthy portfolio.', ALL: '2 red (S/4 Wave 2, MES) and 5 amber. See Programs.' } },
+  { id: 'd3', p: 'delivery', name: 'Benefit realisation vs. plan', unit: '%', dir: 'up', target: 90, amber: 75, vals: [81, 94, 68, 97, 85, 77], src: 'Benefit register (Finance-validated)', conf: 1, owner: 'Digital Finance BP', def: 'Realised benefits vs. the benefits planned to date in business cases. Finance signs off quarterly.',
+    why: { _: 'Benefits on track.', ALL: 'Only 4 of 13 programs have Finance-validated benefit baselines, so treat as indicative.', CIS: 'S/4 benefits deferred with go-live; CPQ benefits are early.', ENT: 'Lakehouse report retirement is behind plan.' } },
+  { id: 'd4', p: 'delivery', name: 'Vendor deliverables on time', unit: '%', dir: 'up', target: 90, amber: 80, vals: [84, 90, 76, 93, 86, 85], src: 'Vendor weekly reports', conf: 1, owner: 'Vendor Management Office', def: 'SOW deliverables accepted by the due date, 13-week rolling. Relies on vendor self-reporting today.',
+    why: { _: 'Vendors delivering to SOW.', ALL: 'Northbeam at 71% on the S/4 SOW. Arbor did not report 2 of the last 4 weeks.', CIS: 'Northbeam data migration deliverables late 3 times.' } },
+  { id: 'i1', p: 'innovation', name: 'Spend in Innovate', unit: '%', dir: 'up', target: 5, amber: 3.5, calc: 'innovShare', dp: 1, src: 'SAP CO, TBM category tags', conf: 2, owner: 'Head of Digital Strategy', def: 'Share of Digital spend in Innovate (pilots, AI, new digital revenue).',
+    why: { _: 'Investing to plan.', ALL: 'Innovate is underspent by $4.7M YTD. Pilot approvals are slow (median 7 weeks).', ENT: 'Central AI platform funding is still pending approval.', CIS: 'Pilot funding redirected to S/4 contingency.' } },
+  { id: 'i2', p: 'innovation', name: 'Pilots scaled (12-mo)', unit: '%', dir: 'up', target: 30, amber: 20, vals: [22, 25, 18, 33, 29, 10], src: 'Innovation funnel (Asana)', conf: 2, owner: 'Head of Digital Strategy', def: 'Share of pilots completed in the last 12 months that moved to funded scale-up.',
+    why: { _: 'Conversion healthy.', ALL: 'Pilots lack pre-agreed scale criteria and a funding path.', CIS: '2 pilots waiting on S/4 before they can scale.', ENT: 'Most central pilots were exploratory with no business sponsor.' } },
+  { id: 'i3', p: 'innovation', name: 'Connected units (K)', unit: 'K', dir: 'up', target: [410, 90, 180, 110, 30, null], vals: [386, 94, 158, 116, 18, null], src: 'IoT platform', conf: 3, owner: 'Head of Connected Products', def: 'Installed units streaming data to the IoT or telematics platform. Basis for service and data revenue.',
+    why: { _: 'Ahead of plan.', ALL: 'C&I EMEA onboarding delayed by gateway certification.', CIS: 'Gateway certification delayed EMEA chiller onboarding.', SVC: 'Retrofit kit program started late (Q3).' } },
+  { id: 'i4', p: 'innovation', name: 'AI use cases in production', unit: '', dir: 'up', target: [12, 2, 3, 2, 3, 2], amberPct: .75, vals: [9, 2, 1, 2, 3, 1], src: 'AI use-case register', conf: 2, owner: 'Head of AI Products', def: 'AI and ML use cases in production with a named business owner and a measured KPI.',
+    why: { _: 'On target.', ALL: 'Model governance review adds about 5 weeks per use case.', CIS: 'Pricing optimisation model held in governance review.', ENT: 'Invoice-matching AI pending SAP Wave 2.' } },
+  { id: 'p1', p: 'people', name: 'Critical role vacancies', unit: '', dir: 'down', target: [15, 3, 4, 2, 3, 3], vals: [18, 3, 8, 1, 4, 7], src: 'Workday', conf: 2, owner: 'Digital HR BP', def: 'Open requisitions for roles tagged critical (architecture, SAP, data, cyber, product).',
+    why: { _: 'Manageable.', ALL: 'SAP S/4 architects and data engineers are the hardest to fill (median 94 days).', CIS: 'SAP SD architect and data migration lead open over 90 days.', ENT: '4 cyber roles open; market rates 18% above band.', SVC: 'Salesforce FSL architect open.' } },
+  { id: 'p2', p: 'people', name: 'Voluntary attrition (annualised)', unit: '%', dir: 'down', target: 10, amber: 13, vals: [11.8, 9.4, 14.6, 8.1, 10.9, 12.2], dp: 1, src: 'Workday', conf: 3, owner: 'Digital HR BP', def: 'Voluntary leavers, annualised on a trailing 6-month basis.',
+    why: { _: 'Below threshold.', ALL: 'Attrition is concentrated in C&I SAP and data roles.', CIS: 'S/4 program fatigue: 5 leavers in Q3.', ENT: 'Cyber and cloud engineers moving to higher-paying roles.', SVC: 'Salesforce developers.' } },
+  { id: 'p3', p: 'people', name: 'Contractor share of workforce', unit: '%', dir: 'down', target: 55, amber: 60, calc: 'ctrShare', dp: 1, src: 'Workday + vendor headcount reports', conf: 1, owner: 'Vendor Management Office', def: 'Contractors as a share of total Digital workforce. Vendor headcount is self-reported until the Phase 2 feed is live.',
+    why: { _: 'Balanced mix.', ALL: 'Critical knowledge (SAP, data) sits with vendors. 14 conversions approved.', CIS: 'S/4 program at 3.1 contractors per FTE.', ENT: 'Infrastructure run is largely outsourced by design.' } },
+  { id: 'p4', p: 'people', name: 'Skills coverage (priority areas)', unit: '%', dir: 'up', target: 80, amber: 70, vals: [71, 76, 64, 82, 73, 70], src: 'Workday skills (partial)', conf: 1, owner: 'Digital HR BP', def: 'Priority skills (S/4, data, cloud, cyber, AI) with at least 2 internal people at proficient level.',
+    why: { _: 'Coverage adequate.', ALL: 'AI and S/4 skills are thin internally. Skills taxonomy goes live Nov 12.', CIS: 'S/4 SD/PP depends on the SI.', ENT: 'AI engineering coverage 40%.' } }
+];
+
+const TEAMS = [
+  { team: 'Residential Digital', seg: 'RES', fte: 112, ctr: 118, open: 6 },
+  { team: 'Commercial Digital', seg: 'CIS', fte: 146, ctr: 251, open: 11 },
+  { team: 'Transport Digital', seg: 'TRF', fte: 64, ctr: 61, open: 2 },
+  { team: 'Services Digital', seg: 'SVC', fte: 88, ctr: 120, open: 5 },
+  { team: 'Enterprise Systems (SAP / ERP)', seg: 'ENT', fte: 212, ctr: 344, open: 9, central: true },
+  { team: 'Data & Analytics', seg: 'ENT', fte: 96, ctr: 131, open: 7, central: true },
+  { team: 'Infrastructure & Cyber', seg: 'ENT', fte: 318, ctr: 402, open: 12, central: true },
+  { team: 'Digital PMO & Architecture', seg: 'ENT', fte: 41, ctr: 18, open: 1, central: true }
+];
+// Share of central team effort by segment served (from Jira worklogs, last 4 weeks)
+const CENTRAL_EFFORT = {
+  'Enterprise Systems (SAP / ERP)': { RES: 18, CIS: 41, TRF: 9, SVC: 12, ENT: 20 },
+  'Data & Analytics': { RES: 20, CIS: 27, TRF: 14, SVC: 22, ENT: 17 },
+  'Infrastructure & Cyber': { RES: 21, CIS: 29, TRF: 11, SVC: 13, ENT: 26 },
+  'Digital PMO & Architecture': { RES: 17, CIS: 30, TRF: 12, SVC: 15, ENT: 26 }
+};
+const VENDORS = [
+  { name: 'Northbeam Consulting', role: 'SAP S/4 systems integrator', segs: ['CIS','ENT'], hc: 286, onshore: 22, spend: 41.8, rate: 68, model: 'T&M + milestones', skills: 'S/4 FI, SD, PP; data migration', rep: 4, del: 71, prod: -6, imp: [3, 5], qbr: '2026-10-14' },
+  { name: 'Kestrel Systems', role: 'Application maintenance (AMS)', segs: ['RES','CIS','TRF','SVC','ENT'], hc: 412, onshore: 12, spend: 27.4, rate: 41, model: 'Managed service (SLA)', skills: 'SAP AMS, MES, PLM, Workday', rep: 4, del: 92, prod: 4, imp: [5, 6], qbr: '2026-11-04' },
+  { name: 'Arbor Digital', role: 'Salesforce & CX build', segs: ['RES','CIS','SVC'], hc: 164, onshore: 35, spend: 16.9, rate: 74, model: 'T&M', skills: 'Salesforce FSL, CPQ, Experience Cloud', rep: 2, del: 84, prod: null, imp: [1, 4], qbr: '2026-10-21' },
+  { name: 'Meridian Tech Services', role: 'Infrastructure & cloud operations', segs: ['ENT'], hc: 298, onshore: 18, spend: 22.6, rate: 45, model: 'Managed service (SLA)', skills: 'Azure, network, OT security, service desk', rep: 4, del: 95, prod: 3, imp: [4, 4], qbr: '2026-12-02' },
+  { name: 'Halcyon Data Labs', role: 'Data engineering & AI', segs: ['CIS','TRF','SVC','ENT'], hc: 97, onshore: 30, spend: 9.8, rate: 79, model: 'T&M', skills: 'Databricks, ML engineering, IoT', rep: 3, del: 88, prod: 9, imp: [2, 3], qbr: '2026-10-28' },
+  { name: 'Long tail (38 vendors)', role: 'Various: niche and staff augmentation', segs: ['RES','CIS','TRF','SVC','ENT'], hc: 188, onshore: 61, spend: 14.5, rate: 63, model: 'Mixed', skills: 'Various', rep: null, del: null, prod: null, imp: null, qbr: null, tail: true }
+];
+const SAP_LIC = [
+  { t: 'Professional (full use)', purchased: 3200, assigned: 3050, active: 2140, flexera: 2790, unit: 3.1 },
+  { t: 'Limited professional / functional', purchased: 4800, assigned: 4420, active: 3310, flexera: 4650, unit: 1.4 },
+  { t: 'Productivity / employee self-service', purchased: 5600, assigned: 5180, active: 4290, flexera: 4020, unit: 0.35 },
+  { t: 'Developer', purchased: 600, assigned: 512, active: 310, flexera: 548, unit: 2.2 }
+];
+const PLATFORMS = [
+  { p: 'SAP (ECC + S/4)', spend: 38.6, status: 'Baseline in progress', pct: 60, conf: 1, due: 'Nov 13', next: 'Reconcile Flexera vs. USMM; indirect/digital access count' },
+  { p: 'Workday', spend: 9.4, status: 'Not started', pct: 0, conf: 0, due: 'Q1 2027', next: 'Module adoption and tenant usage extract' },
+  { p: 'Salesforce', spend: 12.7, status: 'Not started', pct: 0, conf: 0, due: 'Q1 2027', next: 'Licence login analysis by cloud (Sales, Service, FSL)' },
+  { p: 'ServiceNow', spend: 6.1, status: 'Not started', pct: 0, conf: 0, due: 'Q2 2027', next: 'Fulfiller vs. requester licence split' },
+  { p: 'Microsoft 365 / Azure', spend: 21.3, status: 'Partial data', pct: 30, conf: 2, due: 'Q2 2027', next: 'E5 feature adoption; reserved-instance coverage' },
+  { p: 'Engineering (CAD / PLM)', spend: 8.2, status: 'Not started', pct: 0, conf: 0, due: 'Q3 2027', next: 'Concurrent-use peaks vs. seats' }
+];
+
+// Weekly items: src 'seg' = from business/segment team; 'central' = central Digital for that segment.
+const WINS = [
+  { seg: 'RES', src: 'seg', t: 'Dealer Portal 3.2 live to 1,850 dealers', d: 'Quote turnaround down 38%; order status self-service took 9% of calls out of the contact centre.', prog: 'P03' },
+  { seg: 'CIS', src: 'seg', t: 'CPQ live for NA chillers', d: '214 quotes processed in week 1. Quote cycle time down from 9 to 4 days in the pilot region.', prog: 'P05' },
+  { seg: 'TRF', src: 'seg', t: 'Telematics platform passed 116K units', d: 'Reefer temperature alerts now reach fleet customers in under 2 minutes.', prog: 'P06' },
+  { seg: 'SVC', src: 'seg', t: 'GenAI copilot pilot: first-time fix +6 pts', d: 'Measured across 40 technicians over 6 weeks. Scale decision on Oct 28.', prog: 'P11' },
+  { seg: 'CIS', src: 'central', from: 'Data & Analytics', t: 'Commercial margin dashboard delivered to C&I Finance', d: 'Replaces 6 regional Excel packs; first data product on the lakehouse.', prog: 'P07' },
+  { seg: 'ENT', src: 'central', from: 'Infrastructure & Cyber', t: 'Cloud wave 6 done with zero P1s', d: '142 of 180 workloads migrated. DC lease exit on track for December.', prog: 'P12' },
+  { seg: 'RES', src: 'central', from: 'Enterprise Systems', t: 'A2L material master sync automated', d: 'PLM-to-SAP sync removes a 3-day manual step for 1,200 refrigerant-transition SKUs.', prog: 'P13' }
+];
+const RISKS = [
+  { seg: 'CIS', src: 'central', from: 'Enterprise Systems', sev: 'R', t: 'S/4 Wave 2 go-live (Nov 16) at risk', d: 'SIT 2 pass rate 83% vs. 95% gate. Order-to-Cash and data migration defects.', owner: 'Director, SAP Delivery', due: 'Oct 8', esc: 'VP', a3: 'A3-014' },
+  { seg: 'RES', src: 'central', from: 'Enterprise Systems', sev: 'R', t: 'MES Plant 2 go-live slipped 3 weeks', d: '14 OT network defects found in integration test. Plant peak season starts Nov.', owner: 'Director, Manufacturing Systems', due: 'Oct 12', esc: 'Segment', a3: 'A3-016' },
+  { seg: 'ENT', src: 'central', from: 'Enterprise Systems', sev: 'A', t: 'SAP licence position not verified', d: 'Flexera and SAP USMM differ by 1,154 users. Audit exposure unknown.', owner: 'Director, SAP Delivery', due: 'Nov 13', esc: 'VP', a3: 'A3-015' },
+  { seg: 'SVC', src: 'seg', sev: 'A', t: 'Vendor reporting gap: Arbor Digital', d: 'No weekly productivity report in 2 of the last 4 weeks. FSM Wave 2 date depends on their mobile team.', owner: 'Vendor Management Office', due: 'Oct 2', esc: 'Segment', a3: 'A3-017' },
+  { seg: 'ENT', src: 'central', from: 'Infrastructure & Cyber', sev: 'A', t: '2 critical vulnerabilities on OT gateways', d: 'Patch needs plant downtime windows at 3 sites; compensating controls in place.', owner: 'CISO', due: 'Oct 16', esc: 'Team' },
+  { seg: 'CIS', src: 'seg', sev: 'A', t: '8 critical roles open in C&I Digital', d: 'SAP SD architect and data migration lead open for more than 90 days. Knowledge concentrated at the SI.', owner: 'Segment Digital Lead, C&I', due: 'Oct 30', esc: 'Segment' },
+  { seg: 'TRF', src: 'seg', sev: 'A', t: 'Telematics roaming data costs 22% over plan', d: 'EU roaming volumes up with fleet growth. Carrier renegotiation under way.', owner: 'Director, Transport Digital', due: 'Oct 20', esc: 'Team' }
+];
+const MILESTONES = [
+  { seg: 'CIS', d: '2026-10-06', prog: 'P05', m: 'CPQ hypercare exit, NA chillers', s: 'G' },
+  { seg: 'CIS', d: '2026-10-09', prog: 'P01', m: 'S/4 Wave 2: SIT 2 exit gate', s: 'R' },
+  { seg: 'RES', d: '2026-10-12', prog: 'P13', m: 'A2L product data published to dealer portal', s: 'G' },
+  { seg: 'RES', d: '2026-10-15', prog: 'P03', m: 'Dealer Portal 3.3: warranty self-service', s: 'G' },
+  { seg: 'ENT', d: '2026-10-17', prog: 'P12', m: 'Cloud wave 7: 22 workloads', s: 'G' },
+  { seg: 'RES', d: '2026-10-19', prog: 'P10', m: 'MES Plant 2 go-live (re-planned)', s: 'A' },
+  { seg: 'CIS', d: '2026-10-20', prog: 'P02', m: 'IoT: EMEA chiller fleet onboarding', s: 'G' },
+  { seg: 'TRF', d: '2026-10-23', prog: 'P06', m: 'Cold-chain compliance reports for fleets', s: 'G' },
+  { seg: 'ENT', d: '2026-10-27', prog: 'P09', m: 'OT segmentation: plants 7–10', s: 'A' },
+  { seg: 'SVC', d: '2026-10-28', prog: 'P11', m: 'GenAI copilot: pilot readout & scale decision', s: 'G' },
+  { seg: 'ENT', d: '2026-10-30', prog: 'P07', m: 'Finance data products v1', s: 'G' },
+  { seg: 'SVC', d: '2026-11-02', prog: 'P04', m: 'FSM Wave 2: 900 technicians', s: 'A' }
+];
+const PEOPLE = [
+  { seg: 'TRF', t: 'New Segment Digital Lead for Transport started Sep 28', d: 'Onboarding plan and 30-day listening tour with segment leadership.' },
+  { seg: 'ENT', t: 'SAP Centre of Excellence reorganised into 3 value streams', d: 'Record-to-Report, Order-to-Cash, Plan-to-Produce. Effective Oct 5.' },
+  { seg: 'CIS', t: '2 critical hires accepted', d: 'S/4 data migration lead (starts Oct 19) and pricing product owner.' },
+  { seg: 'ENT', t: '14 contractor-to-FTE conversions approved in Data & Analytics', d: 'Saves about $0.9M a year at run rate and keeps knowledge in-house.' },
+  { seg: 'SVC', t: 'Field service product owner role filled internally', d: 'Promoted from the service operations team.' }
+];
+const DECISIONS = [
+  { seg: 'CIS', t: 'Choose the S/4 Wave 2 re-plan option', d: 'A: hold Nov 16 with reduced scope (defer 2 plants). B: move full scope to Feb 8 (+$3.1M). PMO recommends A.', by: 'Oct 8', forum: 'S/4 Steering Committee' },
+  { seg: 'ENT', t: 'Fund the SAP licence baseline sprint', d: '$180K, 6 weeks: reconcile Flexera and USMM, count indirect/digital access, set the fact base before the true-up.', by: 'Oct 2', forum: 'VP Enterprise Systems' },
+  { seg: 'ENT', t: 'Add a weekly reporting clause to vendor SOW renewals', d: 'One-page weekly template (work, resources, productivity, deliverables, spend, improvements) becomes a contract obligation. Northbeam and Arbor renew in Q4.', by: 'Oct 15', forum: 'Procurement + VMO' }
+];
+const A3S = [
+  { id: 'A3-014', seg: 'CIS', prog: 'P01', sev: 'R', title: 'S/4HANA Wave 2 go-live at risk', raised: 'Sep 17', esc: 3, escTo: 'VP Enterprise Systems / S/4 Steering Committee',
+    issue: 'SIT 2 pass rate is 83% against a 95% exit gate. 71 open Sev-1/2 defects, 44 of them in Order-to-Cash pricing and EDI. 2 of 5 data objects (customer master, open orders) failed the migration quality gate.',
+    impact: ['Go-live on Nov 16 at risk; the next cutover window is Feb 8 (after year-end freeze).', 'Cost: +$3.1M if full scope moves to Feb (SI run rate $0.9M/month + extended hypercare).', 'Business: $14M/yr working-capital benefit deferred by one quarter.'],
+    cause: 'Pricing condition design changed late (Aug) without re-baselining test scope. Data cleansing is owned by the business but not resourced.',
+    actions: [ { a: 'Defect burn-down war room; daily triage with Northbeam', o: 'Director, SAP Delivery', d: 'Oct 9', s: 'In progress' }, { a: 'Stand up a business data-cleansing squad (6 FTE from C&I order management)', o: 'VP Customer Operations, C&I', d: 'Oct 5', s: 'Open' }, { a: 'Prepare option A/B re-plan with costed impact', o: 'Digital PMO', d: 'Oct 6', s: 'In progress' }, { a: 'Northbeam to add 2 SD pricing specialists at no extra cost (SOW clause 7.3)', o: 'Vendor Management Office', d: 'Oct 7', s: 'Open' } ],
+    timeline: 'Decision Oct 8; SIT 2 re-exit Oct 23' },
+  { id: 'A3-015', seg: 'ENT', prog: null, sev: 'A', title: 'SAP licence position not established', raised: 'Sep 10', esc: 3, escTo: 'VP Enterprise Systems',
+    issue: 'Licence data is split between Flexera (12,008 users) and SAP USMM/LAW (13,162 assigned). No agreed baseline for named users, indirect/digital access or engines.',
+    impact: ['Unknown audit exposure before the 2027 true-up.', 'Indicative shelfware of $3.1M–$5.4M a year. Not yet reliable enough to act on.', 'Cannot answer the question "are we fully using what we bought?"'],
+    cause: 'No single owner for SAP licence management. Flexera connectors were not updated after the S/4 Wave 1 tenant changes.',
+    actions: [ { a: 'Approve baseline sprint ($180K, 6 weeks)', o: 'VP Enterprise Systems', d: 'Oct 2', s: 'Decision' }, { a: 'Fix Flexera SAP connector for S/4 tenants', o: 'SAM Lead', d: 'Oct 16', s: 'Open' }, { a: 'Run USMM + LAW on all productive systems; reconcile user by user', o: 'SAP Basis Lead', d: 'Oct 30', s: 'Open' }, { a: 'Name a licence owner (RACI) for SAP, then Workday and Salesforce', o: 'Director, SAP Delivery', d: 'Oct 9', s: 'Open' } ],
+    timeline: 'Fact base Nov 13; optimisation plan Dec 4' },
+  { id: 'A3-016', seg: 'RES', prog: 'P10', sev: 'R', title: 'MES Plant 2 go-live slipped 3 weeks', raised: 'Sep 22', esc: 2, escTo: 'Segment Digital Lead, Residential',
+    issue: 'Integration test found 14 OT network defects (firewall rules, historian latency). Go-live moved from Sep 28 to Oct 19.',
+    impact: ['Plant peak season starts Nov 2, so the go-live window is tight.', 'Cost: +$0.4M (vendor extension + overtime).', 'Remaining 4 plants shift about 1 month unless OT readiness is checked upfront.'],
+    cause: 'OT network readiness was not in the plant deployment checklist. Cyber segmentation (P09) and MES were planned separately.',
+    actions: [ { a: 'Joint MES and OT security readiness checklist for all remaining plants', o: 'CISO + Director, Manufacturing Systems', d: 'Oct 9', s: 'In progress' }, { a: 'Close 14 defects; re-run integration test', o: 'Kestrel Systems', d: 'Oct 12', s: 'In progress' }, { a: 'Plant GM sign-off on the Oct 19 window', o: 'Plant 2 GM', d: 'Oct 6', s: 'Open' } ],
+    timeline: 'Go-live Oct 19; lessons learned into plant 3 plan by Oct 30' },
+  { id: 'A3-017', seg: 'SVC', prog: 'P04', sev: 'A', title: 'Vendor reporting compliance: Arbor Digital', raised: 'Sep 24', esc: 2, escTo: 'Segment Digital Lead, Services + VMO',
+    issue: 'Arbor Digital (164 people, $16.9M YTD) has not submitted weekly reports on work, resources and productivity in 2 of the last 4 weeks. Productivity cannot be measured.',
+    impact: ['FSM Wave 2 date (Nov 2) cannot be verified.', 'No basis to challenge the 7% rate increase proposed for the Q4 renewal.'],
+    cause: 'The current SOW has no reporting obligation. The template was shared informally.',
+    actions: [ { a: 'Formal notice: weekly template required from Oct 2', o: 'Vendor Management Office', d: 'Oct 2', s: 'Open' }, { a: 'Add reporting and productivity clauses to the renewal SOW', o: 'Procurement', d: 'Oct 15', s: 'Open' }, { a: 'Bring the QBR forward to Oct 21 with a productivity baseline', o: 'Director, Service Digital', d: 'Oct 21', s: 'Scheduled' } ],
+    timeline: 'Compliant by Oct 9; SOW signed Nov 30' }
+];
+
+/* =====================================================================
+   DERIVED MEASURES
+   ===================================================================== */
+const sum = a => a.reduce((x, y) => x + y, 0);
+const segsFor = seg => seg === 'ALL' ? ['RES','CIS','TRF','SVC','ENT'] : [seg];
+function spendFor(seg) {
+  const out = {};
+  CATS.forEach(c => {
+    const rows = segsFor(seg).map(s => SPEND[s][c.id]);
+    out[c.id] = { ytdB: sum(rows.map(r => r[0])), ytdA: sum(rows.map(r => r[1])), fc: sum(rows.map(r => r[2])) };
+    out[c.id].fyB = out[c.id].ytdB / 0.75;
+  });
+  const t = { ytdB: 0, ytdA: 0, fc: 0, fyB: 0 };
+  Object.values(out).forEach(v => { t.ytdB += v.ytdB; t.ytdA += v.ytdA; t.fc += v.fc; t.fyB += v.fyB; });
+  out._t = t;
+  out._run = out.Run.ytdA + out.Operate.ytdA;
+  out._change = t.ytdA - out._run;
+  return out;
+}
+function costTypesFor(seg) {
+  const acc = {};
+  COST_TYPES.forEach(c => acc[c.id] = 0);
+  segsFor(seg).forEach(s => {
+    const tilt = COST_TILT[s] || {};
+    const w = COST_TYPES.map(c => c.share * (tilt[c.id] || 1));
+    const tw = sum(w);
+    const total = sum(CATS.map(c => SPEND[s][c.id][1]));
+    COST_TYPES.forEach((c, i) => acc[c.id] += total * w[i] / tw);
+  });
+  return COST_TYPES.map(c => ({ ...c, v: acc[c.id] }));
+}
+const progsFor = seg => seg === 'ALL' ? PROGRAMS : PROGRAMS.filter(p => p.seg === seg || p.serves.includes(seg));
+const teamsFor = seg => seg === 'ALL' ? TEAMS : TEAMS.filter(t => t.seg === seg);
+function kpiValue(k, seg) {
+  const i = SEG_IDS.indexOf(seg);
+  if (k.entOnly && seg !== 'ALL' && seg !== 'ENT') return null;
+  if (k.calc === 'spendVar') { const s = spendFor(seg)._t; return (s.ytdA / s.ytdB - 1) * 100; }
+  if (k.calc === 'runShare') { const s = spendFor(seg); return s._run / s._t.ytdA * 100; }
+  if (k.calc === 'innovShare') { const s = spendFor(seg); return s.Innovate.ytdA / s._t.ytdA * 100; }
+  if (k.calc === 'sapUtil') return sum(SAP_LIC.map(l => l.active)) / sum(SAP_LIC.map(l => l.purchased)) * 100;
+  if (k.calc === 'progGreen') { const ps = PROGRAMS.filter(p => seg === 'ALL' || p.seg === seg); return ps.length ? ps.filter(p => p.overall === 'G').length / ps.length * 100 : null; }
+  if (k.calc === 'ctrShare') { const ts = teamsFor(seg); const c = sum(ts.map(t => t.ctr)), f = sum(ts.map(t => t.fte)); return c / (c + f) * 100; }
+  return k.vals[i];
+}
+function kpiTarget(k, seg) { return Array.isArray(k.target) ? k.target[SEG_IDS.indexOf(seg)] : k.target; }
+function kpiStatus(k, seg) {
+  const v = kpiValue(k, seg); if (v == null) return 'N';
+  if (k.dir === 'band') { if (v >= k.lo && v <= k.hi) return 'G'; if (v >= k.loA && v <= k.hiA) return 'A'; return 'R'; }
+  const t = kpiTarget(k, seg); if (t == null) return 'N';
+  let a = k.amber;
+  if (Array.isArray(k.target)) a = k.dir === 'down' ? t * 1.25 : t * (k.amberPct || .85);
+  if (k.dir === 'up') return v >= t ? 'G' : v >= a ? 'A' : 'R';
+  return v <= t ? 'G' : v <= a ? 'A' : 'R';
+}
+function kpiWhy(k, seg) { const st = kpiStatus(k, seg); if (st === 'G') return k.why._; return k.why[seg] || k.why.ALL || k.why._; }
+function fmtK(k, v) {
+  if (v == null) return 'n/a';
+  const dp = k.dp != null ? k.dp : (Math.abs(v) < 10 && k.unit === '%' ? 1 : 0);
+  let s = v.toFixed(dp);
+  if (k.dir === 'band' && v > 0) s = '+' + s;
+  return s + (k.unit === '%' ? '%' : k.unit === 'K' ? 'K' : '');
+}
+function fmtT(k, seg) {
+  if (k.dir === 'band') return `${k.lo}% to +${k.hi}%`;
+  const t = kpiTarget(k, seg); if (t == null) return 'n/a';
+  return (k.dir === 'up' ? '≥ ' : '≤ ') + t + (k.unit === '%' ? '%' : k.unit === 'K' ? 'K' : '');
+}
+function pillarStatus(pid, seg) {
+  const st = KPIS.filter(k => k.p === pid).map(k => kpiStatus(k, seg)).filter(s => s !== 'N');
+  const r = st.filter(s => s === 'R').length, a = st.filter(s => s === 'A').length;
+  if (r >= 2 || (r === 1 && a >= 2)) return 'R';
+  if (r || a) return 'A';
+  return st.length ? 'G' : 'N';
+}
+// deterministic 8-week trend ending at the current value
+function trend(k, seg) {
+  const v = kpiValue(k, seg); if (v == null) return null;
+  let h = 0; const key = k.id + seg; for (const ch of key) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+  const rnd = () => { h = (h * 1664525 + 1013904223) >>> 0; return h / 4294967296; };
+  const span = Math.max(Math.abs(v) * 0.04, 0.4);
+  const drift = (rnd() - 0.5) * span;
+  const pts = []; let x = v;
+  for (let i = 7; i >= 0; i--) { pts[i] = x; x = x - drift / 3 + (rnd() - 0.5) * span * 0.6; }
+  return pts;
+}
+
+/* =====================================================================
+   HELPERS
+   ===================================================================== */
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const RAGL = { G: 'On track', A: 'At risk', R: 'Off track', N: 'No data' };
+const ICON = {
+  G: '<svg viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="5.5" fill="var(--good)"/><path d="M3.4 6.2 5.2 8l3.4-3.8" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  A: '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 .8 11.4 10.6H.6Z" fill="var(--warn)"/><path d="M6 4.3v3" stroke="#3a2a00" stroke-width="1.5" stroke-linecap="round"/><circle cx="6" cy="9" r=".8" fill="#3a2a00"/></svg>',
+  R: '<svg viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="5.5" fill="var(--crit)"/><path d="M4 4l4 4M8 4 4 8" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg>',
+  N: '<svg viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="4.8" fill="none" stroke="var(--none)" stroke-width="1.5"/><path d="M3.8 6h4.4" stroke="var(--none)" stroke-width="1.5"/></svg>'
+};
+const rag = (s, label) => `<span class="rag ${s}">${ICON[s]}${label || RAGL[s]}</span>`;
+const dot = (s, tip) => `<span class="dotrag ${s}" ${tip ? `data-tip="${esc(tip)}"` : ''} role="img" aria-label="${RAGL[s]}"></span>`;
+const conf = n => `<span class="conf" data-tip="Data confidence: ${['Not established', 'Low: manual or unreconciled', 'Medium: partial feed or self-reported', 'High: system of record, automated'][n]}">${[1,2,3].map(i => `<i class="${i <= n ? 'on' : ''}"></i>`).join('')} ${['None', 'Low', 'Med', 'High'][n]}</span>`;
+const M = v => '$' + v.toFixed(1) + 'M';
+const fmtDate = iso => { const d = new Date(iso + 'T12:00:00'); return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }); };
+const progName = id => (PROGRAMS.find(p => p.id === id) || {}).name || '';
+const inSeg = (it, seg) => seg === 'ALL' || it.seg === seg;
+const md = s => { const [m, d] = s.split(' '); return MONTHS.indexOf(m) * 40 + +d; };
+const sLetter = s => ({ 'On track': 'G', 'At risk': 'A', 'Late': 'R' }[s] || 'N');
+
+function sparkline(pts, st, w = 96, h = 26) {
+  if (!pts) return '<span class="note">n/a</span>';
+  const min = Math.min(...pts), max = Math.max(...pts), rng = (max - min) || 1;
+  const xy = pts.map((v, i) => [2 + i * (w - 6) / (pts.length - 1), h - 4 - (v - min) / rng * (h - 8)]);
+  const d = xy.map((p, i) => (i ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' ');
+  const area = d + ` L${xy[xy.length - 1][0].toFixed(1)} ${h} L${xy[0][0].toFixed(1)} ${h} Z`;
+  const col = { G: 'var(--good)', A: 'var(--warn)', R: 'var(--crit)', N: 'var(--none)' }[st];
+  const last = xy[xy.length - 1];
+  return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" aria-hidden="true"><path d="${area}" fill="var(--s1)" opacity=".08"/><path d="${d}" fill="none" stroke="var(--s1)" stroke-width="1.5" stroke-linejoin="round"/><circle cx="${last[0]}" cy="${last[1]}" r="3" fill="${col}" stroke="var(--surface)" stroke-width="1.5"/></svg>`;
+}
+
+/* =====================================================================
+   STATE + NAV
+   ===================================================================== */
+const VIEWS = {
+  brief: { t: 'Weekly Brief', lvl: 'Executive' }, scorecard: { t: 'Scorecard', lvl: 'Executive' },
+  spend: { t: 'Spend & Value', lvl: 'Portfolio' }, programs: { t: 'Programs', lvl: 'Portfolio' },
+  workforce: { t: 'Workforce & Vendors', lvl: 'Portfolio' }, tech: { t: 'Technology Efficiency', lvl: 'Portfolio' },
+  issues: { t: 'Issues (A3)', lvl: 'Governance' }, model: { t: 'Operating Model', lvl: 'Governance' }
+};
+const state = { view: 'brief', seg: 'ALL', progFilter: 'all', progCat: 'all', dir: 'all' };
+try { const s = JSON.parse(localStorage.getItem('odr-state') || '{}'); if (s.seg && SEG_IDS.includes(s.seg)) state.seg = s.seg; if (s.view && VIEWS[s.view]) state.view = s.view; } catch (e) {}
+const h0 = (location.hash || '').slice(1); if (VIEWS[h0]) state.view = h0;
+function save() { try { localStorage.setItem('odr-state', JSON.stringify({ seg: state.seg, view: state.view })); } catch (e) {} }
+
+$('#seg').innerHTML = SEGS.map(s => `<option value="${s.id}">${esc(s.name)}</option>`).join('');
+$('#seg').value = state.seg;
+$('#seg').addEventListener('change', e => { state.seg = e.target.value; save(); render(); });
+document.querySelectorAll('.navbtn').forEach(b => b.addEventListener('click', () => { state.view = b.dataset.view; save(); try { history.replaceState(null, '', '#' + state.view); } catch (e) {} render(); window.scrollTo(0, 0); }));
+$('#genBrief').addEventListener('click', openSummary);
+
+function render() {
+  document.querySelectorAll('.navbtn').forEach(b => b.dataset.view === state.view ? b.setAttribute('aria-current', 'page') : b.removeAttribute('aria-current'));
+  const v = VIEWS[state.view];
+  $('#viewTitle').textContent = v.t;
+  const seg = SEGS.find(s => s.id === state.seg);
+  $('#crumbs').innerHTML = `<span>${v.lvl}</span><span>›</span><b>${esc(seg.name)}</b>`;
+  const a3n = A3S.filter(a => inSeg(a, state.seg) || (state.seg !== 'ALL' && (PROGRAMS.find(p => p.id === a.prog) || { serves: [] }).serves.includes(state.seg))).length;
+  $('#a3count').textContent = a3n || ''; $('#a3count').hidden = !a3n;
+  $('#canvas').innerHTML = ({ brief: vBrief, scorecard: vScore, spend: vSpend, programs: vPrograms, workforce: vWork, tech: vTech, issues: vIssues, model: vModel })[state.view]();
+  wire();
+}
+
+/* =====================================================================
+   VIEW: WEEKLY BRIEF
+   ===================================================================== */
+function pillarStrip(seg, compact) {
+  return `<div class="pillars">${PILLARS.map(p => {
+    const st = pillarStatus(p.id, seg);
+    const ks = KPIS.filter(k => k.p === p.id);
+    const worst = ks.map(k => ({ k, s: kpiStatus(k, seg) })).sort((a, b) => 'RAGN'.indexOf(a.s) - 'RAGN'.indexOf(b.s))[0];
+    const why = st === 'G' ? 'All measures within target.' : `<b>${esc(worst.k.name)}:</b> ${esc(kpiWhy(worst.k, seg))}`;
+    return `<button class="pillar ${st}" data-go="scorecard" type="button" aria-label="${p.name} ${RAGL[st]}, open scorecard">
+      <div class="pillar-top"><h4>${p.name}</h4>${rag(st)}</div>
+      <div class="alias">${p.alias}</div>
+      <div class="kdots">${ks.map(k => dot(kpiStatus(k, seg), k.name + ': ' + fmtK(k, kpiValue(k, seg)))).join('')}</div>
+      ${compact ? '' : `<div class="why">${why}</div>`}
+    </button>`;
+  }).join('')}</div>`;
+}
+function itemsTwoWay(items, seg, fn) {
+  if (seg === 'ALL') {
+    const rows = items.filter(i => true);
+    return rows.length ? `<div class="list">${rows.map(fn).join('')}</div>` : '<div class="empty">Nothing this week.</div>';
+  }
+  const a = items.filter(i => i.seg === seg && i.src === 'seg');
+  const b = items.filter(i => i.seg === seg && i.src === 'central');
+  return `<div class="twoway"><div><h4>From the segment</h4>${a.length ? `<div class="list">${a.map(fn).join('')}</div>` : '<div class="empty">No items this week.</div>'}</div>
+    <div><h4>From central Digital, for this segment</h4>${b.length ? `<div class="list">${b.map(fn).join('')}</div>` : '<div class="empty">No items this week.</div>'}</div></div>`;
+}
+function vBrief() {
+  const seg = state.seg, S = SEGS.find(s => s.id === seg);
+  const ps = progsFor(seg), red = ps.filter(p => p.overall === 'R').length, amb = ps.filter(p => p.overall === 'A').length;
+  const sp = spendFor(seg)._t; const varp = (sp.ytdA / sp.ytdB - 1) * 100;
+  const winFn = w => `<div class="li"><span class="ic">${ICON.G.replace('<svg', '<svg width="14" height="14"')}</span><div class="t">${esc(w.t)}</div><div class="d">${esc(w.d)}</div><div class="m">${seg === 'ALL' ? `<span class="tag">${segName(w.seg)}</span>` : ''}${w.from ? `<span class="tag dir">${esc(w.from)} → ${segName(w.seg)}</span>` : ''}${w.prog ? `<span>${esc(progName(w.prog))}</span>` : ''}</div></div>`;
+  const riskFn = r => `<div class="li"><span class="ic">${ICON[r.sev].replace('<svg', '<svg width="14" height="14"')}</span><div class="t">${esc(r.t)}</div><div class="d">${esc(r.d)}</div><div class="m">${seg === 'ALL' ? `<span class="tag">${segName(r.seg)}</span>` : ''}<span>Owner: ${esc(r.owner)}</span><span class="num">Due ${esc(r.due)}</span><span>Escalation: <b style="color:var(--ink-2)">${esc(r.esc)}</b></span>${r.a3 ? `<a href="#issues" data-go="issues" class="tag dir" style="text-decoration:none">${r.a3}</a>` : ''}</div></div>`;
+  const ms = MILESTONES.filter(m => inSeg(m, seg) || (seg !== 'ALL' && (PROGRAMS.find(p => p.id === m.prog) || { serves: [] }).serves.includes(seg)));
+  const ppl = PEOPLE.filter(p => inSeg(p, seg));
+  const dec = DECISIONS.filter(d => inSeg(d, seg) || seg === 'ENT' || seg === 'ALL');
+  const submitted = seg === 'ALL' ? [22, 26] : ({ RES: [4, 4], CIS: [5, 6], TRF: [3, 3], SVC: [3, 4], ENT: [7, 9] })[seg];
+  return `
+  <div class="viewhead"><div><h2>${seg === 'ALL' ? 'Global Digital' : esc(S.name)}: week 40 operating update</h2>
+    <p>For ${esc(S.lead)}. Built from teams' existing status reports, delivery tools and finance data. Nobody filled in a new template. Bad news is shown with its action plan, owner and escalation level.</p></div>
+    <div class="completeness"><span><span class="meter"><i style="width:${submitted[0] / submitted[1] * 100}%"></i></span><b class="num">${submitted[0]} of ${submitted[1]}</b> team updates received</span><span>${seg === 'ALL' ? '9 of those' : Math.max(1, Math.round(submitted[0] * .4)) + ''} summarised by AI from existing decks and emails</span></div>
+  </div>
+  <section aria-label="Scorecard">${pillarStrip(seg)}</section>
+  <div class="stats">
+    <div class="stat"><span class="eyebrow">Programs off / at risk</span><span class="v">${red}<small>red</small> ${amb}<small>amber</small></span><span class="d">of ${ps.length} programs in view</span></div>
+    <div class="stat"><span class="eyebrow">YTD spend vs. budget</span><span class="v num">${M(sp.ytdA)}</span><span class="d"><span class="${varp > 1 ? 'delta-bad' : varp < -3 ? 'delta-warn' : 'delta-good'}">${varp > 0 ? '+' : ''}${varp.toFixed(1)}%</span> vs. ${M(sp.ytdB)} budget</span></div>
+    <div class="stat"><span class="eyebrow">FY forecast</span><span class="v num">${M(sp.fc)}</span><span class="d">${sp.fc > sp.fyB ? '<span class="delta-bad">' : '<span class="delta-good">'}${sp.fc > sp.fyB ? '+' : ''}${M(sp.fc - sp.fyB).replace('$-', '−$')}</span> vs. ${M(sp.fyB)} budget</span></div>
+    <div class="stat"><span class="eyebrow">Decisions needed this week</span><span class="v">${dec.length}</span><span class="d">Earliest due ${dec.length ? esc(dec.map(d => d.by).sort((a, b) => md(a) - md(b))[0]) : 'n/a'}</span></div>
+  </div>
+  <div class="brief-grid">
+    <section class="panel" style="grid-column:1/-1"><div class="panel-h"><h3>Needs leadership attention</h3><span class="sub">Issue, owner, due date, escalation level. Full A3s in Governance.</span></div>
+      <div class="panel-b flush">${itemsTwoWay(RISKS.slice().sort((a, b) => 'RAG'.indexOf(a.sev) - 'RAG'.indexOf(b.sev)), seg, riskFn)}</div></section>
+    <section class="panel"><div class="panel-h"><h3>Decisions and escalations requested</h3><span class="sub">Ask, forum, deadline</span></div>
+      <div class="panel-b flush">${dec.length ? dec.map(d => `<div class="decision"><div><div class="pname">${esc(d.t)}</div><div class="psub" style="color:var(--ink-2);font-size:13px;margin-top:2px">${esc(d.d)}</div><div class="psub" style="margin-top:4px">${esc(d.forum)}</div></div><div class="by">by ${esc(d.by)}</div></div>`).join('') : '<div class="empty">No decisions requested.</div>'}</div></section>
+    <section class="panel"><div class="panel-h"><h3>Wins and achievements</h3><span class="sub">What moved this week</span></div>
+      <div class="panel-b flush">${itemsTwoWay(WINS, seg, winFn)}</div></section>
+    <section class="panel"><div class="panel-h"><h3>Upcoming milestones</h3><span class="sub">Next 5 weeks</span></div>
+      <div class="panel-b flush scroll-x"><table><thead><tr><th>Date</th><th>Milestone</th><th>Status</th></tr></thead><tbody>
+      ${ms.map(m => `<tr class="click" data-prog="${m.prog}"><td class="num">${fmtDate(m.d)}</td><td><div class="pname" style="font-weight:500">${esc(m.m)}</div><div class="psub">${esc(progName(m.prog))}${seg === 'ALL' ? ' · ' + segName(m.seg) : ''}</div></td><td>${rag(m.s)}</td></tr>`).join('') || '<tr><td colspan="3" class="note">No milestones in window.</td></tr>'}
+      </tbody></table></div></section>
+    <section class="panel"><div class="panel-h"><h3>People and organisation</h3><span class="sub">Leadership, hiring, structure</span></div>
+      <div class="panel-b flush">${ppl.length ? `<div class="list">${ppl.map(p => `<div class="li"><span class="ic"><span class="sw" style="background:var(--s1);border-radius:50%;width:8px;height:8px;margin-top:3px"></span></span><div class="t">${esc(p.t)}</div><div class="d">${esc(p.d)}</div>${seg === 'ALL' ? `<div class="m"><span class="tag">${segName(p.seg)}</span></div>` : ''}</div>`).join('')}</div>` : '<div class="empty">No people updates this week.</div>'}</div></section>
+  </div>`;
+}
+
+/* =====================================================================
+   VIEW: SCORECARD
+   ===================================================================== */
+function vScore() {
+  const seg = state.seg;
+  const matrix = `<div class="scroll-x"><table><thead><tr><th>Pillar</th>${SEGS.map(s => `<th class="c">${s.short}</th>`).join('')}</tr></thead><tbody>
+    ${PILLARS.map(p => `<tr><td class="pname">${p.name}</td>${SEGS.map(s => { const st = pillarStatus(p.id, s.id); return `<td class="c" style="${s.id === seg ? 'background:var(--accent-soft)' : ''}">${dot(st, p.name + ' · ' + s.short + ': ' + RAGL[st])}</td>`; }).join('')}</tr>`).join('')}
+  </tbody></table></div>`;
+  return `
+  <div class="viewhead"><div><h2>Digital scorecard</h2>
+    <p>Five enterprise measures. Every program and function cascades into these, and every red or amber carries its reason. Roll-up rule: a pillar is <b>red</b> with 2 red measures or 1 red + 2 amber, <b>amber</b> with any red or amber, and <b>green</b> otherwise. The confidence bars show how far to trust each number.</p></div></div>
+  ${pillarStrip(seg, true)}
+  <div class="grid g2" style="align-items:start">
+      <section class="panel"><div class="panel-h"><h3>Segment heatmap</h3><span class="sub">Same rules, every segment</span></div><div class="panel-b flush">${matrix}</div></section>
+      <section class="panel"><div class="panel-h"><h3>How the scorecard is governed</h3></div><div class="panel-b" style="display:grid;gap:10px;font-size:13px;color:var(--ink-2)">
+        <div><b style="color:var(--ink)">One definition per measure.</b> Hover a measure name to see its definition. Formula, source and owner are fixed in the KPI dictionary, and segments do not redefine them.</div>
+        <div><b style="color:var(--ink)">Accuracy before reporting.</b> A low-confidence number is shown with its confidence level, never hidden and never presented as fact. Raising confidence is tracked work (see Operating Model).</div>
+        <div><b style="color:var(--ink)">Cascade.</b> Program KPIs map to one pillar each. Program RAG uses the same cost, schedule, scope and risk rules, so a green program and a green pillar mean the same thing.</div>
+        <div><b style="color:var(--ink)">Targets</b> are set yearly with Finance and segment leaders and are not re-baselined mid-year without VP approval.</div>
+      </div></section>
+    </div>
+  <div class="grid">
+    ${PILLARS.map(p => `<section class="panel"><div class="panel-h"><h3>${p.name} <span style="font-weight:400;color:var(--muted)">· ${p.alias}</span></h3>${rag(pillarStatus(p.id, seg))}</div>
+      <div class="kpi-pillar">
+        <div class="kpi-row head"><span class="eyebrow">Measure</span><span class="eyebrow">Actual</span><span class="eyebrow">Target</span><span class="eyebrow">8-week trend</span><span class="eyebrow">Status</span><span class="eyebrow">Why</span></div>
+        ${KPIS.filter(k => k.p === p.id).map(k => { const st = kpiStatus(k, seg); return `<div class="kpi-row">
+          <div><div class="kname" data-tip="${esc(k.def)}">${esc(k.name)}</div><div class="kmeta">${esc(k.owner)} · ${esc(k.src)} · ${conf(k.conf)}</div></div>
+          <div class="kval">${fmtK(k, kpiValue(k, seg))}</div>
+          <div class="ktgt">${fmtT(k, seg)}</div>
+          <div>${sparkline(trend(k, seg), st)}</div>
+          <div>${rag(st)}</div>
+          <div class="kwhy">${esc(k.entOnly && kpiValue(k, seg) == null ? 'Measured at enterprise level. Switch to Global or Enterprise to see it.' : kpiWhy(k, seg))}</div>
+        </div>`; }).join('')}
+      </div></section>`).join('')}
+  </div>
+  </div>`;
+}
+
+/* =====================================================================
+   VIEW: SPEND & VALUE
+   ===================================================================== */
+function cumChart(seg) {
+  const sp = spendFor(seg);
+  const fyB = sp._t.fyB, ytdA = sp._t.ytdA, fc = sp._t.fc;
+  const mB = Array(12).fill(fyB / 12);
+  const mA = PROFILE.map(w => ytdA * w);
+  const rem = fc - ytdA; const mF = [.32, .33, .35].map(w => rem * w);
+  const cumB = [], cumA = []; let b = 0, a = 0;
+  for (let i = 0; i < 12; i++) { b += mB[i]; cumB.push(b); a += i < 9 ? mA[i] : mF[i - 9]; cumA.push(a); }
+  const W = 720, H = 250, L = 52, R = 110, T = 14, B = 26;
+  const maxV = Math.max(cumB[11], cumA[11]);
+  const step = [5, 10, 20, 25, 50, 100, 200][[5, 10, 20, 25, 50, 100, 200].findIndex(s => maxV / s <= 5)] || 100;
+  const yMax = Math.ceil(maxV * 1.05 / step) * step;
+  const x = i => L + i * (W - L - R) / 11, y = v => T + (H - T - B) * (1 - v / yMax);
+  const path = (arr, from, to) => arr.slice(from, to + 1).map((v, j) => (j ? 'L' : 'M') + x(from + j).toFixed(1) + ' ' + y(v).toFixed(1)).join(' ');
+  let g = '';
+  for (let v = 0; v <= yMax; v += step) g += `<line class="${v ? 'grid-l' : 'base-l'}" x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}"/><text x="${L - 8}" y="${y(v) + 4}" text-anchor="end">$${v}M</text>`;
+  MONTHS.forEach((m, i) => g += `<text x="${x(i)}" y="${H - 6}" text-anchor="middle">${m}</text>`);
+  const area = path(cumA, 0, 8) + ` L${x(8)} ${y(0)} L${x(0)} ${y(0)} Z`;
+  const cols = MONTHS.map((m, i) => {
+    const tip = `<b>${m} 2026</b>${i < 9 ? (i === 8 ? ' (flash)' : ' (actual)') : ' (forecast)'}\nMonth: ${M(i < 9 ? mA[i] : mF[i - 9])} vs. budget ${M(mB[i])}\nCumulative: ${M(cumA[i])} vs. budget ${M(cumB[i])}`;
+    const w = (W - L - R) / 11;
+    return `<g class="col"><line class="xh" x1="${x(i)}" x2="${x(i)}" y1="${T}" y2="${H - B}"/><rect class="hit" x="${x(i) - w / 2}" y="${T}" width="${w}" height="${H - T - B}" data-tip="${esc(tip)}"/></g>`;
+  }).join('');
+  const labB = y(cumB[11]), labA = y(cumA[11]); const sep = Math.abs(labB - labA) < 28 ? (labA < labB ? [-9, 9] : [9, -9]) : [0, 0];
+  return `<div class="chart"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Cumulative spend vs budget, 2026">
+    ${g}
+    <path d="${area}" fill="var(--s1)" opacity=".08"/>
+    <path d="${path(cumB, 0, 11)}" fill="none" stroke="var(--ink-2)" stroke-width="1.5"/>
+    <path d="${path(cumA, 0, 8)}" fill="none" stroke="var(--s1)" stroke-width="2.25" stroke-linejoin="round"/>
+    <path d="${path(cumA, 8, 11)}" fill="none" stroke="var(--s1)" stroke-width="2" stroke-dasharray="5 4"/>
+    <circle cx="${x(8)}" cy="${y(cumA[8])}" r="4" fill="var(--s1)" stroke="var(--surface)" stroke-width="2"/>
+    <text class="endlab" x="${x(8) - 8}" y="${y(cumA[8]) - 10}" text-anchor="end">YTD ${M(cumA[8])}</text>
+    <text class="endlab" x="${W - R + 8}" y="${labA + 4 + sep[0]}">FC ${M(cumA[11])}</text>
+    <text x="${W - R + 8}" y="${labB + 4 + sep[1]}">Budget ${M(cumB[11])}</text>
+    ${cols}
+  </svg></div>`;
+}
+function vSpend() {
+  const seg = state.seg, sp = spendFor(seg), t = sp._t;
+  const maxC = Math.max(...CATS.map(c => Math.max(sp[c.id].fyB, sp[c.id].fc)));
+  const catRows = CATS.map(c => {
+    const v = sp[c.id], vr = (v.ytdA / v.ytdB - 1) * 100;
+    const cls = vr > 3 ? 'delta-bad' : vr < -6 ? 'delta-warn' : '';
+    return `<div class="hbar" data-tip="${esc(`<b>${c.label}</b> (${c.type})\nYTD actual ${M(v.ytdA)} vs. budget ${M(v.ytdB)}\nFY forecast ${M(v.fc)} vs. budget ${M(v.fyB)}`)}">
+      <div class="lab"><span class="sw" style="background:${c.c}"></span><div>${c.label}<small>${c.desc}</small></div></div>
+      <div class="track"><div class="fill fc" style="width:${v.fc / maxC * 100}%;background:${c.c}"></div><div class="fill" style="width:${v.ytdA / maxC * 100}%;background:${c.c}"></div><div class="tick" style="left:${v.fyB / maxC * 100}%"></div></div>
+      <div class="val num">${M(v.ytdA)}<small class="${cls}">${vr > 0 ? '+' : ''}${vr.toFixed(1)}% vs. YTD budget</small></div></div>`;
+  }).join('');
+  const runP = sp._run / t.ytdA * 100;
+  const ct = costTypesFor(seg), maxT = Math.max(...ct.map(c => c.v));
+  const progs = progsFor(seg).filter(p => p.aug);
+  const vfmS = { 'Above plan': 'G', 'As planned': 'G', 'Partial': 'A', 'Below': 'R' };
+  return `
+  <div class="viewhead"><div><h2>Spend and value</h2><p>One view of Digital spend across Run, Operate, Build, Transform and Innovate, tied to what the money delivered. Actuals come from SAP CO at month-end close; September is a flash estimate.</p></div></div>
+  <div class="stats">
+    <div class="stat"><span class="eyebrow">FY26 budget</span><span class="v num">${M(t.fyB)}</span><span class="d">Approved Digital budget in view</span></div>
+    <div class="stat"><span class="eyebrow">YTD actual (Sep flash)</span><span class="v num">${M(t.ytdA)}</span><span class="d">${((t.ytdA / t.ytdB - 1) * 100).toFixed(1)}% vs. YTD budget ${M(t.ytdB)}</span></div>
+    <div class="stat"><span class="eyebrow">FY forecast</span><span class="v num">${M(t.fc)}</span><span class="d"><span class="${t.fc > t.fyB ? 'delta-bad' : 'delta-good'}">${t.fc > t.fyB ? '+' : '−'}${M(Math.abs(t.fc - t.fyB))}</span> vs. budget</span></div>
+    <div class="stat"><span class="eyebrow">Run : Change</span><span class="v num">${runP.toFixed(0)} : ${(100 - runP).toFixed(0)}</span><span class="d">Target 58 : 42 or better</span></div>
+  </div>
+  <div class="grid g-7-5">
+    <section class="panel"><div class="panel-h"><h3>Cumulative spend vs. budget, 2026</h3><div class="legend"><span><span class="ln" style="border-color:var(--s1)"></span>Actual</span><span><span class="ln dash" style="border-color:var(--s1)"></span>Forecast</span><span><span class="ln"></span>Budget</span></div></div>
+      <div class="panel-b">${cumChart(seg)}</div></section>
+    <section class="panel"><div class="panel-h"><h3>Run vs. change</h3><span class="sub">YTD actual by category</span></div>
+      <div class="panel-b" style="display:grid;gap:14px">
+        <div><div class="stack" role="img" aria-label="Spend mix">${CATS.map(c => { const p = sp[c.id].ytdA / t.ytdA * 100; return `<div style="flex:${p};background:${c.c}" data-tip="${esc(`<b>${c.label}</b>: ${M(sp[c.id].ytdA)} (${p.toFixed(1)}%)`)}">${p > 9 ? p.toFixed(0) + '%' : ''}</div>`; }).join('')}</div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink-2);margin-top:6px"><span><b>Run</b> (Run + Operate) ${M(sp._run)}</span><span><b>Change</b> ${M(sp._change)}</span></div></div>
+        <div class="legend">${CATS.map(c => `<span><span class="sw" style="background:${c.c}"></span>${c.label} ${(sp[c.id].ytdA / t.ytdA * 100).toFixed(0)}%</span>`).join('')}</div>
+        <p class="note" style="margin:0">Categories use TBM tagging on SAP cost centres and WBS elements. About 12% of spend is still tagged by allocation rule, not at source.</p>
+      </div></section>
+  </div>
+  <div class="grid g2">
+    <section class="panel"><div class="panel-h"><h3>By investment category</h3><div class="legend"><span><span class="sw" style="background:var(--ink-2)"></span>YTD actual</span><span><span class="sw" style="background:var(--ink-2);opacity:.45"></span>FY forecast</span><span><span class="tk"></span>FY budget</span></div></div>
+      <div class="panel-b">${catRows}</div></section>
+    <section class="panel"><div class="panel-h"><h3>By cost type</h3><span class="sub">YTD actual</span></div>
+      <div class="panel-b">${ct.map(c => `<div class="hbar" data-tip="${esc(`<b>${c.label}</b>: ${M(c.v)} (${(c.v / t.ytdA * 100).toFixed(1)}%)`)}"><div class="lab">${c.label}</div><div class="track"><div class="fill" style="width:${c.v / maxT * 100}%;background:var(--s1)"></div></div><div class="val num">${M(c.v)}<small>${(c.v / t.ytdA * 100).toFixed(0)}%</small></div></div>`).join('')}</div></section>
+  </div>
+  <section class="panel"><div class="panel-h"><h3>What did we get for the money? August close</h3><span class="sub">Spend, output and outcome per program. Click a row for detail.</span></div>
+    <div class="panel-b flush scroll-x"><table><thead><tr><th>Program</th><th class="r">Aug spend</th><th>Delivered</th><th>Outcome signal</th><th>Value for money</th><th class="r">Benefits realised / planned</th></tr></thead><tbody>
+    ${progs.sort((a, b) => b.aug.spend - a.aug.spend).map(p => `<tr class="click" data-prog="${p.id}"><td style="min-width:200px"><div class="pname">${esc(p.name)}</div><div class="psub">${p.cat} · ${segName(p.seg)}</div></td><td class="r num">${M(p.aug.spend)}</td><td style="min-width:260px;color:var(--ink-2)">${esc(p.aug.delivered)}</td><td style="min-width:180px">${esc(p.kpi)}</td><td>${rag(vfmS[p.aug.vfm], p.aug.vfm)}</td><td class="r num">${p.value.planM ? `${M(p.value.realM)} / ${M(p.value.planM)}` : '<span class="note">Non-financial</span>'}</td></tr>`).join('')}
+    </tbody></table></div></section>`;
+}
+
+/* =====================================================================
+   VIEW: PROGRAMS
+   ===================================================================== */
+function vPrograms() {
+  const seg = state.seg;
+  let ps = progsFor(seg);
+  if (state.progFilter !== 'all') ps = ps.filter(p => p.overall === state.progFilter);
+  if (state.progCat !== 'all') ps = ps.filter(p => p.cat === state.progCat);
+  ps = ps.slice().sort((a, b) => 'RAG'.indexOf(a.overall) - 'RAG'.indexOf(b.overall) || b.budget - a.budget);
+  const all = progsFor(seg);
+  const tb = sum(all.map(p => p.budget)), ta = sum(all.map(p => p.actual)), tf = sum(all.map(p => p.forecast));
+  const chip = (k, v, l) => `<button class="chip" type="button" data-f="${k}" data-v="${v}" aria-pressed="${state[k] === v}">${l}</button>`;
+  return `
+  <div class="viewhead"><div><h2>Program portfolio</h2><p>Every major program on one set of RAG rules, with spend, milestones, KPIs and value. Drill down from here: Program → Initiative → Jira/Asana epic.</p></div></div>
+  <div class="stats">
+    <div class="stat"><span class="eyebrow">Programs in view</span><span class="v">${all.length}</span><span class="d">${all.filter(p => p.overall === 'G').length} green · ${all.filter(p => p.overall === 'A').length} amber · ${all.filter(p => p.overall === 'R').length} red</span></div>
+    <div class="stat"><span class="eyebrow">FY budget</span><span class="v num">${M(tb)}</span><span class="d">Change programs only</span></div>
+    <div class="stat"><span class="eyebrow">Spent to date</span><span class="v num">${M(ta)}</span><span class="d">${(ta / tb * 100).toFixed(0)}% of budget</span></div>
+    <div class="stat"><span class="eyebrow">Forecast at completion</span><span class="v num">${M(tf)}</span><span class="d"><span class="${tf > tb ? 'delta-bad' : 'delta-good'}">${tf > tb ? '+' : '−'}${M(Math.abs(tf - tb))}</span> vs. budget</span></div>
+  </div>
+  <section class="panel">
+    <div class="panel-h" style="align-items:center"><div class="chips">${chip('progFilter', 'all', 'All')}${chip('progFilter', 'R', 'Red')}${chip('progFilter', 'A', 'Amber')}${chip('progFilter', 'G', 'Green')}</div>
+      <div class="chips">${chip('progCat', 'all', 'All categories')}${['Operate','Build','Transform','Innovate'].map(c => chip('progCat', c, c)).join('')}</div></div>
+    <div class="panel-b flush scroll-x"><table><thead><tr><th>Program</th><th>Overall</th><th class="c">Cost</th><th class="c">Sched.</th><th class="c">Scope</th><th class="c">Risk</th><th class="r">Budget</th><th class="r">Actual</th><th class="r">Forecast</th><th>Next milestone</th><th>Vendor</th></tr></thead><tbody>
+    ${ps.map(p => { const ov = p.forecast - p.budget; return `<tr class="click" data-prog="${p.id}">
+      <td style="min-width:230px"><div class="pname">${esc(p.name)}</div><div class="psub">${p.id} · ${p.cat} · ${segName(p.seg)}${p.seg !== seg && seg !== 'ALL' ? ' <span class="tag dir">central → ' + segName(seg) + '</span>' : ''} · ${esc(p.owner)}</div></td>
+      <td>${rag(p.overall)}</td>${['cost','schedule','scope','risk'].map(d => `<td class="c">${dot(p.h[d], d + ': ' + RAGL[p.h[d]])}</td>`).join('')}
+      <td class="r num">${M(p.budget)}</td><td class="r num">${M(p.actual)}</td><td class="r num ${ov > p.budget * .03 ? 'delta-bad' : ''}">${M(p.forecast)}</td>
+      <td style="min-width:190px"><div>${esc(p.next.m)}</div><div class="psub num">${fmtDate(p.next.d)} · ${esc(p.next.s)}</div></td><td class="psub" style="min-width:130px">${esc(p.vendor)}</td></tr>`; }).join('') || '<tr><td colspan="11" class="note">No programs match these filters.</td></tr>'}
+    </tbody></table></div>
+    <div class="panel-b note" style="border-top:1px solid var(--line)">RAG rules: <b>Cost</b> red when forecast exceeds budget by more than 5%, amber above 2%. <b>Schedule</b> red when a key milestone is more than 15 business days late, amber above 5. <b>Scope</b> and <b>Risk</b> are PMO-validated owner assessments. Overall follows the worst dimension unless the PMO records an override with a reason.</div>
+  </section>`;
+}
+function openProgram(id) {
+  const p = PROGRAMS.find(x => x.id === id); if (!p) return;
+  const a3 = A3S.find(a => a.prog === id);
+  const burn = p.actual / p.budget * 100;
+  $('#overlay').innerHTML = `<div class="scrim" data-close></div><aside class="drawer" role="dialog" aria-modal="true" aria-label="${esc(p.name)}">
+    <div class="drawer-h"><div class="crumbs"><span>Executive</span><span>›</span><span>Portfolio</span><span>›</span><span>${segName(p.seg)}</span><span>›</span><b>Program ${p.id}</b></div>
+      <div class="row"><div><h3>${esc(p.name)}</h3><div class="psub">${p.cat} · ${esc(p.team)} · Sponsor: ${esc(p.sponsor)} · Owner: ${esc(p.owner)}</div></div><button class="x" data-close aria-label="Close">×</button></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">${rag(p.overall)}<span class="tag">${esc(p.phase)}</span><span class="tag">${p.pct}% complete</span><span class="tag">Vendor: ${esc(p.vendor)}</span>${a3 ? `<span class="tag dir">${a3.id} open</span>` : ''}</div></div>
+    <div class="drawer-b">
+      <div class="hgrid">${['cost','schedule','scope','risk'].map(d => `<div><span class="eyebrow">${d}</span>${rag(p.h[d])}</div>`).join('')}</div>
+      <section class="panel"><div class="panel-h"><h3>Financials (FY26)</h3><span class="sub">${burn.toFixed(0)}% of budget spent at ${p.pct}% complete</span></div><div class="panel-b">
+        <div class="hbar"><div class="lab">Actual / forecast</div><div class="track"><div class="fill fc" style="width:${Math.min(100, p.forecast / Math.max(p.budget, p.forecast) * 100)}%;background:var(--s1)"></div><div class="fill" style="width:${p.actual / Math.max(p.budget, p.forecast) * 100}%;background:var(--s1)"></div><div class="tick" style="left:${p.budget / Math.max(p.budget, p.forecast) * 100 - .3}%"></div></div><div class="val num">${M(p.actual)}<small>FC ${M(p.forecast)} · Bud ${M(p.budget)}</small></div></div>
+      </div></section>
+      <section class="panel"><div class="panel-h"><h3>Value</h3><span class="sub">Benefit register</span></div><div class="panel-b" style="display:grid;gap:6px">
+        <div><b>Outcome KPI:</b> ${esc(p.kpi)}</div><div><b>Planned benefit:</b> ${esc(p.value.text)}</div>
+        <div><b>Realised to date:</b> <span class="num">${p.value.planM ? `${M(p.value.realM)} of ${M(p.value.planM)} a year` : 'Non-financial'}</span></div>
+        <div style="color:var(--ink-2)"><b style="color:var(--ink)">August:</b> ${M(p.aug.spend)} spent. ${esc(p.aug.delivered)}</div></div></section>
+      <section class="panel"><div class="panel-h"><h3>Initiatives</h3><span class="sub">Detail lives in Jira/Asana</span></div><div class="panel-b flush"><table><thead><tr><th>Initiative</th><th>Status</th><th>Epic</th><th class="r">Open items</th></tr></thead><tbody>
+        ${p.inits.map(i => `<tr><td>${esc(i.n)}</td><td>${rag(i.s)}</td><td class="num">${i.epic}</td><td class="r num">${i.open}</td></tr>`).join('')}</tbody></table></div></section>
+      <section class="panel"><div class="panel-h"><h3>Next milestone</h3></div><div class="panel-b"><b>${esc(p.next.m)}</b> · <span class="num">${fmtDate(p.next.d)}</span> · ${rag(sLetter(p.next.s), p.next.s)}</div></section>
+      ${a3 ? `<section class="panel"><div class="panel-h"><h3>${a3.id}: ${esc(a3.title)}</h3><button class="btn" data-go="issues" data-close type="button">Open A3</button></div><div class="panel-b" style="color:var(--ink-2)">${esc(a3.issue)}</div></section>` : ''}
+    </div></aside>`;
+  wireOverlay();
+}
+
+/* =====================================================================
+   VIEW: WORKFORCE & VENDORS
+   ===================================================================== */
+function vendorScore(v) {
+  if (v.tail) return null;
+  const rep = v.rep / 4 * 100, del = v.del, prod = v.prod == null ? 0 : Math.max(0, Math.min(100, 50 + v.prod * 5)), imp = v.imp[0] / v.imp[1] * 100;
+  return Math.round(rep * .25 + del * .35 + prod * .2 + imp * .2);
+}
+function vWork() {
+  const seg = state.seg, ts = teamsFor(seg);
+  const F = sum(ts.map(t => t.fte)), C = sum(ts.map(t => t.ctr)), O = sum(ts.map(t => t.open));
+  const vs = VENDORS.filter(v => seg === 'ALL' || v.segs.includes(seg));
+  const maxT = Math.max(...ts.map(t => t.fte + t.ctr + t.open));
+  const hc = sum(vs.map(v => v.hc)), vsp = sum(vs.map(v => v.spend));
+  const blended = sum(vs.map(v => v.rate * v.hc)) / hc;
+  const cellBg = v => `background:color-mix(in srgb, var(--s1) ${Math.round(8 + v * 1.6)}%, var(--surface))`;
+  return `
+  <div class="viewhead"><div><h2>Workforce and vendors</h2><p>Who is doing the work: internal FTE and contractors by team, where central teams spend their effort, and how each vendor performs against what it reports.</p></div></div>
+  <div class="stats">
+    <div class="stat"><span class="eyebrow">Internal FTE</span><span class="v num">${F.toLocaleString()}</span><span class="d">${O} open requisitions</span></div>
+    <div class="stat"><span class="eyebrow">Contractors</span><span class="v num">${C.toLocaleString()}</span><span class="d">${(C / (C + F) * 100).toFixed(1)}% of workforce (target ≤ 55%)</span></div>
+    <div class="stat"><span class="eyebrow">Vendor spend YTD${seg === 'ALL' ? '' : ' (vendors serving segment)'}</span><span class="v num">${M(vsp)}</span><span class="d">${vs.length} vendor groups · ${hc.toLocaleString()} people</span></div>
+    <div class="stat"><span class="eyebrow">Blended contractor rate</span><span class="v num">$${blended.toFixed(0)}<small>/hr</small></span><span class="d">Weighted by headcount; onshore + offshore</span></div>
+  </div>
+  <div class="grid">
+    <section class="panel"><div class="panel-h"><h3>Capacity by team</h3><div class="legend"><span><span class="sw" style="background:var(--s1)"></span>FTE</span><span><span class="sw" style="background:var(--s2)"></span>Contractor</span><span><span class="sw" style="background:var(--line-2)"></span>Open reqs</span></div></div>
+      <div class="panel-b">${ts.map(t => { const tot = t.fte + t.ctr + t.open; return `<div class="hbar" data-tip="${esc(`<b>${t.team}</b>\nFTE ${t.fte} · Contractors ${t.ctr} · Open ${t.open}\nContractor share ${(t.ctr / (t.ctr + t.fte) * 100).toFixed(0)}%`)}"><div class="lab">${esc(t.team)}</div>
+        <div style="display:flex;gap:2px;height:14px;width:${tot / maxT * 100}%"><div style="flex:${t.fte};background:var(--s1);border-radius:3px 0 0 3px"></div><div style="flex:${t.ctr};background:var(--s2)"></div><div style="flex:${t.open};background:var(--line-2);border-radius:0 3px 3px 0"></div></div>
+        <div class="val num">${t.fte + t.ctr}<small>${(t.ctr / (t.ctr + t.fte) * 100).toFixed(0)}% contract</small></div></div>`; }).join('')}</div></section>
+    <section class="panel"><div class="panel-h"><h3>Central Digital effort by segment</h3><span class="sub">% of logged hours, last 4 weeks</span></div>
+      <div class="panel-b flush scroll-x"><table class="heat"><thead><tr><th>Central team</th>${['RES','CIS','TRF','SVC','ENT'].map(s => `<th class="c">${segName(s)}</th>`).join('')}</tr></thead><tbody>
+      ${Object.entries(CENTRAL_EFFORT).map(([k, row]) => `<tr><td style="font-size:12.5px">${esc(k)}</td>${['RES','CIS','TRF','SVC','ENT'].map(s => `<td class="cell" style="${cellBg(row[s])};${s === seg ? 'font-weight:700;' : ''}" data-tip="${esc(`${k} → ${segName(s)}: ${row[s]}% of hours`)}">${row[s]}%</td>`).join('')}</tr>`).join('')}
+      </tbody></table><div class="panel-b note">Answers the segment question "what is central Digital doing for us?" Source: Jira worklogs tagged by segment.</div></div></section>
+  </div>
+  <section class="panel"><div class="panel-h"><h3>Vendor accountability scorecard</h3><span class="sub">Vendors report weekly on work, resources, productivity, deliverables, spend and improvements. QBRs feed portfolio governance.</span></div>
+    <div class="panel-b flush scroll-x"><table><thead><tr><th>Vendor</th><th class="r">People</th><th class="r">YTD spend</th><th class="r">Rate</th><th>Commercial model</th><th class="c">Weekly reports (last 4)</th><th class="r">Deliverables on time</th><th class="r">Productivity trend</th><th class="c">Improvements</th><th class="r">Score</th><th>Next QBR</th></tr></thead><tbody>
+    ${vs.map(v => { const sc = vendorScore(v); const scS = sc == null ? 'N' : sc >= 85 ? 'G' : sc >= 70 ? 'A' : 'R'; return `<tr>
+      <td style="min-width:200px"><div class="pname">${esc(v.name)}</div><div class="psub">${esc(v.role)} · ${esc(v.skills)}</div></td>
+      <td class="r num">${v.hc}<div class="psub">${v.onshore}% onshore</div></td><td class="r num">${M(v.spend)}</td><td class="r num">$${v.rate}</td><td class="psub">${esc(v.model)}</td>
+      <td class="c">${v.rep == null ? '<span class="note">Not in scope</span>' : `<span style="display:inline-flex;gap:3px">${[0,1,2,3].map(i => `<span class="dotrag ${i < v.rep ? 'G' : 'R'}" data-tip="${i < v.rep ? 'Submitted' : 'Missing'}"></span>`).join('')}</span>`}</td>
+      <td class="r num ${v.del != null && v.del < 80 ? 'delta-bad' : ''}">${v.del == null ? '—' : v.del + '%'}</td>
+      <td class="r num ${v.prod == null ? '' : v.prod < 0 ? 'delta-bad' : 'delta-good'}">${v.prod == null ? (v.tail ? '—' : '<span class="delta-warn">Not reported</span>') : (v.prod > 0 ? '+' : '') + v.prod + '%'}</td>
+      <td class="c num">${v.imp ? v.imp[0] + ' / ' + v.imp[1] : '—'}</td>
+      <td class="r">${sc == null ? '<span class="note">n/a</span>' : rag(scS, String(sc))}</td><td class="num">${v.qbr ? fmtDate(v.qbr) : '—'}</td></tr>`; }).join('')}
+    </tbody></table></div>
+    <div class="panel-b note" style="border-top:1px solid var(--line)">Score = reporting compliance 25% + deliverables on time 35% + productivity trend 20% + improvements delivered vs. committed 20%. A vendor that does not report scores zero on productivity. Productivity is output per billed FTE (story points, tickets resolved or SLA units, depending on the commercial model).</div></section>`;
+}
+
+/* =====================================================================
+   VIEW: TECHNOLOGY EFFICIENCY
+   ===================================================================== */
+function vTech() {
+  const P = sum(SAP_LIC.map(l => l.purchased)), A = sum(SAP_LIC.map(l => l.assigned)), U = sum(SAP_LIC.map(l => l.active)), Fx = sum(SAP_LIC.map(l => l.flexera));
+  const maxP = Math.max(...SAP_LIC.map(l => l.purchased));
+  return `
+  <div class="viewhead"><div><h2>Technology efficiency</h2><p>Are we fully using what we bought? SAP first, then Workday, Salesforce and the other major platforms. The VP's rule applies: establish the fact base before reporting savings. Where the data is missing, that gap is the first finding.</p></div></div>
+  <div class="stats">
+    <div class="stat"><span class="eyebrow">SAP licences purchased</span><span class="v num">${P.toLocaleString()}</span><span class="d">Named users across 4 licence types</span></div>
+    <div class="stat"><span class="eyebrow">Active in last 90 days</span><span class="v num">${U.toLocaleString()}</span><span class="d">${(U / P * 100).toFixed(1)}% utilisation (target ≥ 85%)</span></div>
+    <div class="stat"><span class="eyebrow">Unreconciled users</span><span class="v num" style="color:var(--crit-ink)">${(A - Fx).toLocaleString()}</span><span class="d">SAP USMM ${A.toLocaleString()} vs. Flexera ${Fx.toLocaleString()}</span></div>
+    <div class="stat"><span class="eyebrow">Indicative opportunity</span><span class="v num">$3.1–5.4M<small>/yr</small></span><span class="d">${conf(1)} Not validated. Do not book.</span></div>
+  </div>
+  <div class="grid g-7-5">
+    <section class="panel"><div class="panel-h"><h3>SAP named-user licences</h3><div class="legend"><span><span class="sw" style="background:var(--line-2)"></span>Purchased</span><span><span class="sw" style="background:var(--s1);opacity:.45"></span>Assigned (USMM)</span><span><span class="sw" style="background:var(--s1)"></span>Active 90d</span><span><span class="tk" style="background:var(--s2)"></span>Flexera count</span></div></div>
+      <div class="panel-b">${SAP_LIC.map(l => `<div class="hbar" data-tip="${esc(`<b>${l.t}</b>\nPurchased ${l.purchased.toLocaleString()}\nAssigned ${l.assigned.toLocaleString()} · Active ${l.active.toLocaleString()}\nFlexera ${l.flexera.toLocaleString()} (gap ${(l.assigned - l.flexera).toLocaleString()})\nUnused: about $${((l.purchased - l.active) * l.unit / 1000).toFixed(1)}M a year at list price`)}">
+        <div class="lab"><div>${esc(l.t)}<small>${(l.active / l.purchased * 100).toFixed(0)}% active</small></div></div>
+        <div class="track" style="width:${l.purchased / maxP * 100}%;background:var(--line)"><div class="fill fc" style="width:${l.assigned / l.purchased * 100}%;background:var(--s1)"></div><div class="fill" style="width:${l.active / l.purchased * 100}%;background:var(--s1)"></div><div class="tick" style="left:${l.flexera / l.purchased * 100}%;background:var(--s2)"></div></div>
+        <div class="val num">${l.active.toLocaleString()}<small>of ${l.purchased.toLocaleString()}</small></div></div>`).join('')}
+        <p class="note" style="margin:14px 0 0">Not yet baselined: indirect/digital access documents, engine and package metrics, and user classification accuracy (Professional users who only need Productivity access).</p></div></section>
+    <section class="panel"><div class="panel-h"><h3>Building the SAP fact base</h3><span class="sub">A3-015</span></div><div class="panel-b" style="display:grid;gap:10px;font-size:13px">
+      ${[['Fund 6-week baseline sprint', 'Decision Oct 2', 'A'], ['Fix Flexera connector for S/4 tenants', 'Oct 16', 'N'], ['USMM + LAW on all productive systems', 'Oct 30', 'N'], ['User-by-user reconciliation and reclassification', 'Nov 13', 'N'], ['Indirect/digital access document count', 'Nov 13', 'N'], ['Optimisation plan with Procurement', 'Dec 4', 'N']].map((r, i) => `<div style="display:grid;grid-template-columns:22px minmax(0,1fr) auto;gap:8px;align-items:center"><span class="num" style="color:var(--muted)">${i + 1}</span><span>${r[0]}</span><span class="num psub">${r[1]}</span></div>`).join('')}
+      <p class="note" style="margin:4px 0 0">When done, the SAP utilisation KPI moves from Low to High confidence and the opportunity range becomes a figure Procurement can take into negotiation.</p></div></section>
+  </div>
+  <section class="panel"><div class="panel-h"><h3>Platform utilisation roadmap</h3><span class="sub">Apply the same method platform by platform</span></div>
+    <div class="panel-b flush scroll-x"><table><thead><tr><th>Platform</th><th class="r">Annual spend</th><th>Baseline status</th><th>Progress</th><th>Confidence</th><th>Target</th><th>Next step</th></tr></thead><tbody>
+    ${PLATFORMS.map(p => `<tr><td class="pname">${esc(p.p)}</td><td class="r num">${M(p.spend)}</td><td>${esc(p.status)}</td><td style="min-width:120px"><div class="track" style="height:8px"><div class="fill" style="top:0;bottom:0;width:${p.pct}%;background:var(--s1)"></div></div></td><td>${conf(p.conf)}</td><td class="num">${esc(p.due)}</td><td class="psub" style="min-width:220px">${esc(p.next)}</td></tr>`).join('')}
+    </tbody></table></div></section>`;
+}
+
+/* =====================================================================
+   VIEW: ISSUES (A3)
+   ===================================================================== */
+function vIssues() {
+  const seg = state.seg;
+  const list = A3S.filter(a => inSeg(a, seg) || (seg !== 'ALL' && (PROGRAMS.find(p => p.id === a.prog) || { serves: [] }).serves.includes(seg)));
+  const levels = ['Team', 'Segment', 'VP', 'ELT'];
+  return `
+  <div class="viewhead"><div><h2>Major issues: A3 format</h2><p>One structured page per significant issue, replacing long email threads: issue, impact, actions, owner, timeline, escalation. Raised early, reviewed weekly until closed.</p></div>
+    <div class="flow" aria-label="A3 flow"><span>Issue</span><span>Impact</span><span>Actions</span><span>Owner</span><span>Timeline</span><span>Escalation</span></div></div>
+  ${list.length ? list.map(a => `<section class="panel">
+    <div class="panel-h" style="align-items:center"><div style="display:grid;gap:4px"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span class="num psub">${a.id}</span>${rag(a.sev)}<span class="tag">${segName(a.seg)}</span>${a.prog ? `<a href="#programs" class="tag dir" data-prog="${a.prog}" style="text-decoration:none">${esc(progName(a.prog))}</a>` : ''}<span class="psub">Raised ${a.raised}</span></div><h3 style="font-size:16px">${esc(a.title)}</h3></div>
+      <div style="display:grid;gap:4px;justify-items:end"><div class="esc" aria-label="Escalation level ${levels[a.esc - 1]}">${levels.map((l, i) => `<i class="${i < a.esc ? 'on' : ''}"></i>`).join('')}<span style="margin-left:6px;font-weight:600">${levels[a.esc - 1]}</span></div><span class="psub">${esc(a.escTo)}</span></div></div>
+    <div class="a3">
+      <section><h5>Issue</h5><p>${esc(a.issue)}</p><h5 style="margin-top:10px">Root cause (current view)</h5><p>${esc(a.cause)}</p></section>
+      <section><h5>Impact</h5><ul>${a.impact.map(i => `<li>${esc(i)}</li>`).join('')}</ul><h5 style="margin-top:12px">Timeline</h5><p class="num" style="font-size:12.5px">${esc(a.timeline)}</p></section>
+      <section style="padding:0"><h5 style="padding:12px 16px 0">Actions and owners</h5><div class="scroll-x"><table class="actions"><thead><tr><th>Action</th><th>Owner</th><th>Due</th><th>Status</th></tr></thead><tbody>
+        ${a.actions.map(x => `<tr><td>${esc(x.a)}</td><td class="psub">${esc(x.o)}</td><td class="num">${x.d}</td><td><span class="tag">${x.s}</span></td></tr>`).join('')}</tbody></table></div></section>
+    </div></section>`).join('') : '<section class="panel"><div class="empty">No open A3s for this segment.</div></section>'}`;
+}
+
+/* =====================================================================
+   VIEW: OPERATING MODEL
+   ===================================================================== */
+function vModel() {
+  const sources = [
+    ['Jira Cloud', 'Epics, milestones, worklogs, defects', 'API', 3, 'Daily'], ['Asana', 'Residential & Services team plans', 'API', 3, 'Daily'],
+    ['ServiceNow', 'Incidents, changes, availability', 'API', 3, 'Hourly'], ['SAP FI/CO + BPC', 'Budget, actuals, forecast by TBM category', 'Extract (manual)', 2, 'Monthly close + weekly flash'],
+    ['Workday', 'FTE, vacancies, attrition, skills', 'Planned (Phase 2)', 1, 'Weekly'], ['Vendor weekly reports', '1-page template: work, resources, productivity, deliverables, spend, improvements', 'Upload + AI extract', 1, 'Weekly (Wed 12:00)'],
+    ['Flexera + SAP USMM/LAW', 'Licence entitlement and usage', 'Manual, reconciling', 1, 'Monthly'], ['Team status reports', 'Existing PPT, Excel and email updates', 'AI summarisation', 2, 'Weekly'],
+    ['Coupa / Ariba', 'POs, invoices, contracts by vendor', 'Planned (Phase 4)', 0, 'Monthly'], ['One Digital Platform', 'Existing hub: program register, status', 'Foundation', 2, 'Live']
+  ];
+  const gaps = [
+    ['Weekly executive summary by segment', 'Operating rhythm', 'gap', 'AI consolidation layer on ODP; Thursday 17:00 distribution'],
+    ['Program status, milestones, RAG', 'Program management', 'part', 'Common RAG rules; connect Jira/Asana instead of manual entry'],
+    ['Budget, actual, forecast by category', 'Spend visibility (#1)', 'gap', 'SAP CO feed with TBM tags (Run/Operate/Build/Transform/Innovate)'],
+    ['Spend linked to outcomes', 'Value for money', 'gap', 'Benefit register per program, validated by Finance quarterly'],
+    ['FTE and contractor by team and vendor', 'Workforce transparency', 'part', 'Workday feed + vendor headcount in weekly template'],
+    ['Vendor performance and QBR inputs', 'Vendor accountability', 'gap', 'Contractual weekly reporting; QBR scorecard feeds governance'],
+    ['Licence utilisation', 'Technology efficiency', 'gap', 'SAP fact base first (A3-015), then Workday and Salesforce'],
+    ['Risks, issues, escalations', 'Governance', 'part', 'A3 template with escalation SLA; replaces email threads'],
+    ['Team → segment → global roll-up', 'Hub model', 'part', 'One hierarchy and ID scheme for programs, teams and segments']
+  ];
+  const covL = { have: 'Covered', part: 'Partial', gap: 'Gap' };
+  return `
+  <div class="viewhead"><div><h2>Operating model</h2><p>How this dashboard runs every week without adding reporting burden, how it rolls up, and how it grows into portfolio governance.</p></div></div>
+  <section class="panel"><div class="panel-h"><h3>Weekly management rhythm</h3><span class="sub">Thursday evening is the target cadence</span></div>
+    <div class="rhythm">
+      <div><span class="day">Monday</span><span class="when">06:00</span><span class="what">Automated refresh: Jira, Asana, ServiceNow, finance flash.</span></div>
+      <div><span class="day">Tuesday</span><span class="when">by 17:00</span><span class="what">Teams update their existing status reports as usual. Nothing new to fill in.</span></div>
+      <div><span class="day">Wednesday</span><span class="when">12:00</span><span class="what">Vendor weekly reports due. AI consolidates reports, flags themes, drafts segment summaries.</span></div>
+      <div><span class="day">Wednesday</span><span class="when">15:00–17:00</span><span class="what">PMO validates facts and RAG. Segment Digital leads review their view (30 min).</span></div>
+      <div class="key"><span class="day">Thursday</span><span class="when">17:00</span><span class="what"><b>Executive summary sent</b> to Segment Digital leaders and Digital leadership.</span></div>
+      <div><span class="day">Friday</span><span class="when">AM</span><span class="what">Leadership consolidation into the enterprise weekly report.</span></div>
+    </div>
+    <div class="panel-b note" style="border-top:1px solid var(--line)">Monthly: portfolio review (spend, value, re-prioritisation). Quarterly: vendor QBRs feed portfolio governance, and scorecard targets are checked with Finance.</div></section>
+  <div class="grid g2">
+    <section class="panel"><div class="panel-h"><h3>Hub roll-up</h3><span class="sub">Teams keep their formats; the hub standardises</span></div><div class="panel-b" style="display:grid;gap:14px">
+      <div class="hub"><div><b>Team</b><span>Existing status reports, Jira/Asana, vendor reports</span></div><div><b>Segment</b><span>Segment Digital view: what happened, what needs attention, what central teams are doing for us</span></div><div><b>Global Digital</b><span>VP view: CQDIP scorecard, spend, portfolio, A3s</span></div><div><b>Enterprise</b><span>Feeds the Friday enterprise report and, later, ELT portfolio reviews</span></div></div>
+      <p class="note" style="margin:0">Two-way by design. Every item is tagged with its segment and its source (segment team or central Digital), so a Business Unit leader and Digital leadership see the same facts.</p></div></section>
+    <section class="panel"><div class="panel-h"><h3>Data sources and confidence</h3><span class="sub">One source of truth, fed automatically where possible</span></div>
+      <div class="panel-b flush scroll-x"><table><thead><tr><th>Source</th><th>Feeds</th><th>Method</th><th>Confidence</th><th>Refresh</th></tr></thead><tbody>
+      ${sources.map(s => `<tr><td class="pname" style="white-space:nowrap">${s[0]}</td><td class="psub" style="min-width:180px">${s[1]}</td><td style="font-size:12.5px">${s[2]}</td><td>${conf(s[3])}</td><td class="psub">${s[4]}</td></tr>`).join('')}</tbody></table></div></section>
+  </div>
+  <section class="panel"><div class="panel-h"><h3>One Digital Platform: coverage vs. VP requirements</h3><span class="sub">Starting assessment. Validate with the ODP product owner.</span></div>
+    <div class="panel-b flush scroll-x"><table><thead><tr><th>Capability</th><th>VP requirement</th><th>ODP today</th><th>Action to close</th></tr></thead><tbody>
+    ${gaps.map(g => `<tr><td class="pname">${g[0]}</td><td class="psub">${g[1]}</td><td><span class="cov ${g[2]}">${covL[g[2]]}</span></td><td style="color:var(--ink-2)">${g[3]}</td></tr>`).join('')}</tbody></table></div></section>
+  <section class="panel"><div class="panel-h"><h3>Roadmap</h3><span class="sub">Start this week and improve every week. The first version will not be perfect.</span></div><div class="panel-b">
+    <div class="phase">
+      <div class="now"><span class="eyebrow" style="color:var(--accent)">Phase 1 · Weeks 0–4 · Now</span><b>Weekly operating rhythm</b><ul><li>Thursday summary from existing reports</li><li>CQDIP scorecard v1 with confidence levels</li><li>A3 template for major issues</li><li>Hub report criteria agreed (Kamal)</li></ul></div>
+      <div><span class="eyebrow">Phase 2 · Months 2–3</span><b>Spend and program visibility</b><ul><li>SAP CO feed with TBM category tagging</li><li>Jira/Asana connected; Excel trackers retired</li><li>Workday FTE and vacancy feed</li><li>Benefit register for top 15 programs</li></ul></div>
+      <div><span class="eyebrow">Phase 3 · Months 3–6</span><b>Efficiency and vendor accountability</b><ul><li>SAP licence fact base, then optimisation</li><li>Weekly vendor reporting in all SOWs</li><li>QBR scorecards feeding governance</li><li>Segment dashboards live for every BU</li></ul></div>
+      <div><span class="eyebrow">Phase 4 · Months 6–12</span><b>Portfolio governance</b><ul><li>Monthly portfolio review and re-prioritisation</li><li>Procurement and licence spend (Coupa/Ariba)</li><li>Workday, Salesforce and ServiceNow utilisation</li><li>Enterprise reporting integration</li></ul></div>
+    </div></div></section>`;
+}
+
+/* =====================================================================
+   THURSDAY SUMMARY (generated from the same data)
+   ===================================================================== */
+function buildSummary() {
+  const seg = state.seg, S = SEGS.find(s => s.id === seg);
+  const L = [];
+  const ps = progsFor(seg), sp = spendFor(seg)._t;
+  L.push(`DIGITAL WEEKLY OPERATING UPDATE · WEEK 40 · ${S.name.toUpperCase()}`);
+  L.push(`For: ${S.lead}  |  Issued: Thu 1 Oct 2026, 17:00  |  Draft, PMO-validated`);
+  L.push('');
+  L.push('SCORECARD (where are we red/amber/green, and why)');
+  PILLARS.forEach(p => {
+    const st = pillarStatus(p.id, seg);
+    const worst = KPIS.filter(k => k.p === p.id).map(k => ({ k, s: kpiStatus(k, seg) })).sort((a, b) => 'RAGN'.indexOf(a.s) - 'RAGN'.indexOf(b.s))[0];
+    L.push(`  ${p.name.padEnd(11)} ${RAGL[st].toUpperCase().padEnd(10)} ${st === 'G' ? 'All measures within target.' : worst.k.name + ': ' + fmtK(worst.k, kpiValue(worst.k, seg)) + '. ' + kpiWhy(worst.k, seg)}`);
+  });
+  L.push('');
+  L.push(`SPEND: YTD ${M(sp.ytdA)} vs. budget ${M(sp.ytdB)} (${((sp.ytdA / sp.ytdB - 1) * 100).toFixed(1)}%). FY forecast ${M(sp.fc)} vs. ${M(sp.fyB)}.`);
+  L.push(`PORTFOLIO: ${ps.length} programs: ${ps.filter(p => p.overall === 'R').length} red, ${ps.filter(p => p.overall === 'A').length} amber, ${ps.filter(p => p.overall === 'G').length} green.`);
+  L.push('');
+  L.push('NEEDS ATTENTION');
+  RISKS.filter(r => inSeg(r, seg)).sort((a, b) => 'RAG'.indexOf(a.sev) - 'RAG'.indexOf(b.sev)).forEach(r => L.push(`  [${RAGL[r.sev]}] ${r.t}. ${r.d} Owner: ${r.owner}. Due ${r.due}. Escalation: ${r.esc}.${r.a3 ? ' (' + r.a3 + ')' : ''}`));
+  const dec = DECISIONS.filter(d => inSeg(d, seg) || seg === 'ENT' || seg === 'ALL');
+  if (dec.length) { L.push(''); L.push('DECISIONS REQUESTED'); dec.forEach(d => L.push(`  • ${d.t} (by ${d.by}, ${d.forum}). ${d.d}`)); }
+  L.push(''); L.push('WINS');
+  WINS.filter(w => inSeg(w, seg)).forEach(w => L.push(`  • ${w.t}. ${w.d}${w.from ? ' [' + w.from + ' → ' + segName(w.seg) + ']' : ''}`));
+  L.push(''); L.push('NEXT MILESTONES');
+  MILESTONES.filter(m => inSeg(m, seg) || (seg !== 'ALL' && (PROGRAMS.find(p => p.id === m.prog) || { serves: [] }).serves.includes(seg))).slice(0, 6).forEach(m => L.push(`  ${fmtDate(m.d).padEnd(7)} ${m.m} (${RAGL[m.s]})`));
+  const ppl = PEOPLE.filter(p => inSeg(p, seg));
+  if (ppl.length) { L.push(''); L.push('PEOPLE & ORGANISATION'); ppl.forEach(p => L.push(`  • ${p.t}. ${p.d}`)); }
+  L.push(''); L.push('Detail and drill-down: One Digital Operating Review > ' + S.short + '.');
+  return L.join('\n');
+}
+function openSummary() {
+  const txt = buildSummary();
+  $('#overlay').innerHTML = `<div class="scrim" data-close></div><div class="modal" role="dialog" aria-modal="true" aria-label="Thursday summary">
+    <div class="modal-h"><div><h3 style="font-size:16px">Thursday executive summary</h3><div class="psub">Generated from this week's data for ${esc(SEGS.find(s => s.id === state.seg).name)}. Change the segment to produce each segment's version.</div></div><button class="x" data-close aria-label="Close">×</button></div>
+    <div class="modal-b"><pre id="sumtxt">${esc(txt)}</pre></div>
+    <div class="modal-f"><span>The PMO reviews every line before it is sent. AI drafts; people own the facts.</span><button class="btn primary" id="copySum" type="button">Copy text</button></div></div>`;
+  wireOverlay();
+  $('#copySum').addEventListener('click', () => {
+    const done = () => toast('Summary copied');
+    try { navigator.clipboard.writeText(txt).then(done, () => selectPre()); } catch (e) { selectPre(); }
+  });
+}
+function selectPre() { const r = document.createRange(); r.selectNodeContents($('#sumtxt')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); toast('Text selected. Press Ctrl+C / ⌘C to copy'); }
+function toast(m) { const t = document.createElement('div'); t.className = 'toast'; t.textContent = m; document.body.appendChild(t); setTimeout(() => t.remove(), 2200); }
+
+/* =====================================================================
+   WIRING
+   ===================================================================== */
+function closeOverlay() { $('#overlay').innerHTML = ''; }
+function wireOverlay() {
+  $('#overlay').querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', () => { const go = el.dataset.go; closeOverlay(); if (go) { state.view = go; save(); render(); window.scrollTo(0, 0); } }));
+  const f = $('#overlay').querySelector('.x'); if (f) f.focus();
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeOverlay(); });
+function wire() {
+  document.querySelectorAll('#canvas [data-prog]').forEach(el => el.addEventListener('click', e => { e.preventDefault(); openProgram(el.dataset.prog); }));
+  document.querySelectorAll('#canvas [data-go]').forEach(el => el.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); state.view = el.dataset.go; save(); render(); window.scrollTo(0, 0); }));
+  document.querySelectorAll('#canvas [data-f]').forEach(el => el.addEventListener('click', () => { state[el.dataset.f] = el.dataset.v; render(); }));
+}
+// tooltip (hover + focus)
+const tip = $('#tip');
+function showTip(el, x, y) {
+  tip.innerHTML = el.getAttribute('data-tip').split('\n').map(l => l.replace(/&lt;b&gt;|&lt;\/b&gt;/g, '')).map(l => l.includes('<b>') ? l : esc(l)).join('\n');
+  tip.hidden = false;
+  const r = tip.getBoundingClientRect();
+  let left = x + 14, top = y + 14;
+  if (left + r.width > innerWidth - 8) left = x - r.width - 14;
+  if (top + r.height > innerHeight - 8) top = y - r.height - 14;
+  tip.style.left = Math.max(8, left) + 'px'; tip.style.top = Math.max(8, top) + 'px';
+}
+document.addEventListener('mousemove', e => { const el = e.target.closest && e.target.closest('[data-tip]'); if (el) showTip(el, e.clientX, e.clientY); else tip.hidden = true; });
+document.addEventListener('scroll', () => { tip.hidden = true; }, { passive: true });
+
+render();
+</script>
